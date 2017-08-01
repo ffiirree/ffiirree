@@ -1,0 +1,203 @@
+@charset "utf-8";
+
+body {
+    margin: 0;
+    padding: 0;
+    background: #f7f8fa;
+}
+
+header {
+    position: fixed;
+    top: 0;
+}
+
+// 页面设置
+.page {
+    margin: 50px auto auto;
+    display: flex;
+    flex-flow: row;
+    width: 1000px;
+    min-height: 100%;
+
+    .left {
+        flex: 1 1 auto;
+    }
+
+    .right {
+        flex: 0 0 300px;
+
+        padding-left: 10px;
+
+        #categories {
+            position: fixed;
+            top: 50px;
+            width: 290px;
+            margin-top: 15px;
+            background-color: white;
+            border: 1px solid #e7eaf1;
+            border-radius: 2px;
+            box-shadow: 0 1px 3px rgba(0,37,55,.05);
+            height: 400px;
+
+            padding: 10px 0;
+
+            > div {
+                padding: 0 25px;
+                height: 40px;
+                line-height: 40px;
+                color: #8590a6;
+
+            }
+            > div:hover{
+                cursor: pointer;
+                background-color: #f6f6fa;
+            }
+        }
+    }
+}
+
+// 文章列表
+.article {
+    box-sizing: border-box;
+
+    background-color: white;
+    display: flex;
+    flex-flow: column;
+    border: 1px solid #e7eaf1;
+    border-radius: 2px;
+    box-shadow: 0 1px 3px rgba(0,37,55,.05);
+    margin-top: 15px;
+
+    padding: 16px 20px;
+
+    // 分类
+    .topics {
+        flex: 0 0 30px;
+
+        .topic {
+            display: inline-block;
+            background-color: #eef4fa;
+            height: 26px;
+            line-height: 26px;
+            border-radius: 13px;
+            font-size: 13px;
+            padding: 0 10px;
+            color: #3e7ac2;
+            margin-right: 10px;
+        }
+
+        .topic:hover {
+            cursor: pointer;
+        }
+    }
+
+    // 文章题目
+    .title {
+        flex: 0 0 30px;
+        line-height: 30px;
+
+        a {
+            color: black;
+            font-size: 20px;
+            font-weight: 700;
+        }
+        a:hover {
+            color: #0055aa;
+        }
+    }
+
+    // 文章简介
+    .content {
+        flex: 0 0 auto;
+        height: auto;
+
+        margin: 10px 0;
+        color: #262626;
+        line-height: 1.67;
+    }
+
+    .details {
+        flex: 0 0 20px;
+
+        display: flex;
+        flex-flow: row;
+
+        .category {
+            flex: 0 1 auto;
+            height: 18px;
+            line-height: 18px;
+            border: solid 1px #3a90f2;
+            border-radius: 3px;
+            padding: 0 10px;
+            color: #3a90f2;
+            font-size: 13px;
+        }
+        .category:hover {
+            cursor: pointer;
+        }
+
+        ul {
+            flex: 1 1 auto;
+            li {
+                color: #8590a6;
+                display: flex;
+                flex-flow: row;
+                height: 20px;
+                line-height: 20px;
+                font-size: 14px;
+                margin-left: 15px;
+
+                i {
+                    color: #8590a6;
+                    flex: 0 0 30px;
+                    width: 30px;
+                    line-height: 20px;
+                    text-align: center;
+                }
+
+                span {
+                    flex: 1 1 auto;
+                    line-height: 20px;
+                }
+            }
+        }
+    }
+}
+
+// 分页
+.pagination {
+    ul {
+        width: 100px;
+        margin: 20px auto;
+
+        li {
+            border: 1px solid #e7eaf1;
+            border-radius: 2px;
+            box-shadow: 0 1px 3px rgba(0,37,55,.05);
+            height: 30px;
+            width: 40px;
+            background-color: white;
+            text-align: center;
+
+            i {
+                line-height: 30px;
+                font-size: 20px;
+            }
+        }
+    }
+}
+
+footer {
+    height: 200px;
+    background-color: white;
+    position: relative;
+
+    .info {
+        width: 100%;
+        text-align: center;
+        color: #888888;
+        font-size: 13px;
+        position: absolute;
+        bottom: 10px;
+    }
+}

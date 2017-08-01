@@ -1,0 +1,101 @@
+@charset "UTF-8";
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #eeeeee; }
+
+.page {
+  display: flex;
+  flex-flow: row;
+  max-width: 960px;
+  margin: auto; }
+
+/*///////////////////////// -- 布局 -- ///////////////////////*/
+.article-list {
+  flex: 1 1 auto; }
+
+.side-nav {
+  flex: 0 0 300px; }
+
+/*///////////////////////// --article list -- ///////////////////////*/
+.article-list {
+  margin: 25px 0; }
+  .article-list article {
+    background-color: white;
+    padding: 10px 25px;
+    border-bottom: #dddddd 1px solid;
+    /*文章标题*/
+    /* 文章部分内容 */ }
+    .article-list article .article-user-info {
+      display: flex;
+      flex-flow: row; }
+      .article-list article .article-user-info .avatar img {
+        width: 35px;
+        height: 35px;
+        border-radius: 50%; }
+      .article-list article .article-user-info .username {
+        margin: 0 15px;
+        line-height: 35px; }
+        .article-list article .article-user-info .username a {
+          text-decoration-line: none;
+          color: black;
+          font-size: 15px; }
+      .article-list article .article-user-info .submit-time {
+        line-height: 35px !important;
+        font-size: 12px;
+        color: #888888; }
+    .article-list article .title {
+      font-size: 23px;
+      font-weight: bold; }
+      .article-list article .title a {
+        color: black;
+        border-bottom: inherit 3px solid; }
+      .article-list article .title a:hover {
+        color: #888888;
+        border-bottom: #00b0e8 3px solid; }
+    .article-list article .content {
+      margin: 10px 5px;
+      font-size: 13px;
+      line-height: 19px;
+      color: #666666; }
+  .article-list article:hover {
+    border-left: #00b0e8 7px solid; }
+
+.article-list > article .article-details {
+  overflow: auto; }
+
+.article-list > article .article-details li {
+  float: right;
+  font-size: 13px;
+  line-height: 17px;
+  text-align: center;
+  color: #666666; }
+
+.article-list > article .article-details .read-number {
+  display: flex;
+  flex-flow: row; }
+
+.article-list > article .article-details .read-number img {
+  margin-right: 5px; }
+
+/*///////////////////////// --article list -- ///////////////////////*/
+.pagination {
+  max-width: 960px;
+  margin: 25px auto;
+  text-align: center; }
+  .pagination ul {
+    display: inline-block;
+    margin: auto;
+    overflow: auto;
+    clear: both; }
+    .pagination ul li {
+      height: 25px;
+      line-height: 25px;
+      color: white;
+      background-color: #00AAAA;
+      border-radius: 3px;
+      margin: 0 5px; }
+    .pagination ul .current-page {
+      background-color: #ffff55; }
+
+/*# sourceMappingURL=list.css.map */

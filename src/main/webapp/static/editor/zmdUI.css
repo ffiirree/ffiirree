@@ -1,0 +1,384 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+
+/*///////////////////////////// 自定义滚动条 /////////////////////////*/
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+/* 滚动槽 */
+::-webkit-scrollbar-track {
+    border-radius: 2px;
+}
+
+/* 滚动条滑块 */
+::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background: #cccccc;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #aaaaaa;
+}
+
+
+/*///////////////////////////// zmd /////////////////////////*/
+.zmd {
+    /*background-color: #aaaaaa;*/
+}
+
+
+/*///////////////////////////// 标题 /////////////////////////*/
+.zmd-title-input-margin {
+    padding: 0 60px;
+    border-top: #aaaaaa 1px solid;
+}
+
+
+#zmd-title-input {
+    display: block;
+    outline: none;
+    border: none;
+
+    margin: 0;
+    padding: 0;
+
+    width: 100%;
+    height: 49px;
+
+    font-family: "Microsoft YaHei UI", sans-serif;
+    font-size: 24px;
+
+    line-height: 50px;
+}
+
+
+/*///////////////////////////// 菜单 /////////////////////////*/
+.zmd-menu {
+    height: 40px;
+    background-color: #CCCCCC;
+}
+
+.zmd-menu ul {
+    display: inline-block;
+    list-style: none;
+    margin: 0;
+    padding: 0 0 0 35px;
+    height: 40px;
+}
+
+.zmd-menu li {
+    height: 40px;
+    float: left;
+}
+
+.zmd-menu li i {
+    display: block;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    width: 40px;
+
+    cursor: pointer;
+}
+
+.zmd-menu li i:hover {
+    background-color: #888888;
+}
+
+#zmd-submit-box {
+    display: inline-block;
+    float: right;
+    height: 40px;
+    line-height: 40px;
+
+    margin-right: 50px;
+}
+
+#zmd-submit {
+    outline: none;
+    border: none;
+
+    height: 30px;
+    width: 65px;
+
+    background-color: #00AAAA;
+    border-radius: 5px;
+
+    color: white;
+}
+
+#zmd-submit:hover{
+    background-color: #00b0e8;
+    cursor: pointer;
+}
+
+
+/*///////////////////////////// 编辑区 /////////////////////////*/
+#zmd-editor {
+    display: flex;
+    position: absolute;
+    top: 90px;
+    bottom: 0;
+
+    width: 100%;
+}
+
+#zmd-textarea-scroll{
+    width: 50%;
+    height:100%;
+
+    overflow-y: auto;
+}
+
+#zmd-textarea-box {
+    margin: auto;
+    height: 100%;
+}
+
+#zmd-textarea-margin{
+    padding: 0;
+    margin: 0 40px 0 60px;
+
+    height: 100%;
+
+    cursor: text;
+}
+
+#zmd-textarea {
+    display: block;
+    padding: 0;
+    margin: 0;
+
+    resize: none;
+    outline: none;
+    border: none;
+
+    width: 100%;
+
+    /*min-height: 100%;*/
+
+    font-family: "Microsoft YaHei UI", sans-serif;
+    font-size: 16px;
+
+    line-height: 26px;
+
+    background-color: white;
+}
+
+
+/*///////////////////////////// 预览区 /////////////////////////*/
+#zmd-preview-scroll {
+    width: 50%;
+    height: 100%;
+
+    overflow-y: auto;
+
+    background-color: #eeeeea;
+}
+
+#zmd-preview-margin {
+    width: 100%;
+    margin: auto;
+}
+
+#zmd-preview {
+    margin: 0 60px 0 40px;
+    overflow-y: auto;
+
+    font-family: "Microsoft YaHei UI", sans-serif;
+    font-size: 16px;
+
+    line-height: 26px;
+
+    /*overflow-x: hidden;*/
+    word-wrap: break-word;
+}
+
+
+/*///////////////////////////// 插入链接窗口 /////////////////////////*/
+.link-window-background,
+.picture-window-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.link-window,
+.picture-window {
+    background-color: white;
+
+    width: 500px;
+
+    margin: 200px auto auto;
+    padding-bottom: 25px;
+}
+
+.link-window-title,
+.picture-window-title {
+    background-color: #cccccc;
+    height: 35px;
+    line-height: 35px;
+    text-align: center;
+    font-size: 20px;
+}
+
+.link-title,
+.link-url,
+.picture-title {
+    margin: 15px 0;
+    padding: 5px 25px;
+}
+
+.link-title input,
+.link-url input,
+.picture-title input{
+    height: 20px;
+    line-height: 20px;
+    font-size: 16px;
+
+    width: 375px;
+}
+
+.link-window-operation,
+.picture-window-operation {
+    overflow: auto;
+    padding: 5px 15px;
+}
+
+.link-window-operation button,
+.picture-window-operation button{
+    float: right;
+
+    margin: 0 10px;
+}
+
+.link-window-operation button:hover,
+.picture-window-operation button:hover {
+    cursor: pointer;
+}
+
+.picture-upload {
+    border: #aaaaaa 1px dashed;
+    border-radius: 5px;
+
+    position: relative;
+    width: 250px;
+    height: 100px;
+    line-height: 100px;
+    text-align: center;
+
+    margin: 10px auto;
+}
+
+.picture-upload input:hover {
+    cursor: pointer;
+}
+
+.picture-upload input {
+    position: absolute;
+    top: 0;
+    right: 0;
+    opacity: 0;
+
+    width: 250px;
+    height: 100px;
+}
+
+
+.article-details-background {
+    position: fixed;
+    top:0;
+    left:0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.article-details {
+    width: 650px;
+    overflow: auto;
+
+    margin: 200px auto auto;
+    background-color: white;
+}
+
+.article-details .title {
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+
+    background-color: #eeeeee;
+    font-size: 18px;
+}
+
+.article-details .input-bar {
+    display: flex;
+    flex-flow: row;
+    margin: 20px 20px;
+}
+
+.article-details .input-bar >div{
+    flex: 0 0 85px;
+    height: 35px;
+    line-height: 35px;
+}
+
+.article-details .input-bar .topics-bar,
+.article-details .input-bar select {
+    flex: 1 1 auto;
+    outline: none;
+    padding: 0;
+    border: solid 1px #dddddd;
+}
+.article-details .input-bar .topics-bar {
+    display: flex;
+    flex-flow: row;
+}
+
+.article-details .input-bar .topics-bar .add-topics {
+    flex: 0 1 auto;
+}
+.article-details .input-bar .topics-bar input{
+    flex: 1 1 auto;
+    outline: none;
+    border: none;
+    padding: 0 10px;
+}
+
+.topic-cell {
+    background-color: #eff6fa;
+    font-size: 13px;
+    border-radius: 12px;
+    padding: 0 10px;
+    height: 24px;
+    line-height: 24px;
+    display: inline-block;
+    color: #3a90f2;
+    margin: 0 5px;
+}
+.topic-cell:hover {
+    cursor: pointer;
+}
+.topic-cell span:first-child {
+}
+
+.topic-cell span:last-child {
+    margin-left: 10px;
+
+}
+
+.article-details button {
+    float: right;
+    margin-right: 20px;
+    height: 35px;
+    width: 100px;
+
+    margin-bottom: 10px;
+}

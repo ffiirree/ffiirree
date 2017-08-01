@@ -1,0 +1,33 @@
+body {
+  background-color: #cccccc; }
+
+.page {
+  background-color: white;
+  padding: 50px 0;
+  width: 400px;
+  display: block;
+  margin: 10% auto auto;
+  box-shadow: 0 0 15px 5px #aaaaaa; }
+
+.login-form {
+  width: 350px;
+  margin: auto;
+  background-color: white; }
+  .login-form .title {
+    margin: 25px;
+    height: 25px;
+    line-height: 25px;
+    font-size: 20px;
+    text-align: center; }
+  .login-form #password,
+  .login-form #username {
+    width: inherit; }
+  .login-form #submit {
+    width: inherit;
+    height: 40px; }
+  .login-form .notices {
+    font-size: 13px;
+    text-align: center;
+    margin: 10px 0; }
+
+/*# sourceMappingURL=login.css.map */

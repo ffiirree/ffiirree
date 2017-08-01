@@ -1,0 +1,115 @@
+@charset "utf-8";
+
+/*///////////////////////// -- body -- ///////////////////////*/
+// 默认
+// \ 外边界和内边界均为0
+@mixin body($selector) {
+    #{$selector} {
+        margin: 0;
+        padding: 0;
+    }
+}
+
+
+/*///////////////////////// -- button -- ///////////////////////*/
+@mixin  button($selector, $width: auto,  $height:auto, $br: 5px, $bgc: #00AAAA, $hbgc: #00b0e8) {
+    #{$selector} {
+        border: none;
+        outline: none;
+
+        height: $height;
+        width: $width;
+        border-radius: $br;
+
+        background-color: $bgc;
+        color: white;
+    }
+
+    #{$selector}:hover {
+        background-color: $hbgc;
+        cursor: pointer;
+    }
+}
+
+
+/*///////////////////////// -- ul -- ///////////////////////*/
+@mixin  ul($selector, $float: left, $height: auto) {
+    #{$selector} {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+
+        overflow: auto;
+        height: $height;
+    }
+
+    #{$selector} li {
+        padding: 0;
+        margin: 0;
+        height: $height;
+        float: $float;
+    }
+}
+
+/*///////////////////////// -- hr -- ///////////////////////*/
+.hr {
+    border: none;
+    border-top: #cccccc 1px solid;
+}
+
+
+/*///////////////////////// -- a -- ///////////////////////*/
+@mixin  a($selector, $color: #00AAAA, $hover-color: #00b0e8) {
+    #{$selector} {
+        text-decoration-line: none;
+        color: $color;
+    }
+
+    #{$selector}:hover {
+        color: $hover-color;
+    }
+}
+
+/*///////////////////////// -- input -- ///////////////////////*/
+@mixin input($selector) {
+    #{$selector} {
+        display: block;
+
+        border: none;
+        outline: none;
+        margin: 0;
+        padding: 0;
+    }
+}
+
+/*///////////////////////// -- textarea -- ///////////////////////*/
+@mixin textarea($selector) {
+    #{$selector} {
+        display: block;
+        padding: 0;
+        margin: 0;
+
+        resize: none;
+        outline: none;
+        border: none;
+
+        background-color: white;
+    }
+}
+
+/*///////////////////////// -- scrollbar -- ///////////////////////*/
+@mixin scrollbar($selector, $width: 10px, $bgc: #cccccc, $hbgc: #aaaaaa) {
+
+    #{$selector}::-webkit-scrollbar {
+        width: 12px;
+    }
+
+    #{$selector}::-webkit-scrollbar-thumb {
+        border-radius: 4px;
+        background: $bgc;
+    }
+
+    #{$selector}::-webkit-scrollbar-thumb:hover {
+        background: $hbgc;
+    }
+}
