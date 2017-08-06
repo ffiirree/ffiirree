@@ -112,20 +112,24 @@ header {
           flex: 1 1 auto;
           line-height: 20px; }
 
-.pagination ul {
-  width: 100px;
-  margin: 20px auto; }
-  .pagination ul li {
-    border: 1px solid #e7eaf1;
-    border-radius: 2px;
-    box-shadow: 0 1px 3px rgba(0, 37, 55, 0.05);
-    height: 30px;
-    width: 40px;
-    background-color: white;
-    text-align: center; }
-    .pagination ul li i {
+.pagination {
+  text-align: center; }
+  .pagination ul {
+    display: inline-block;
+    margin: 20px auto; }
+    .pagination ul li {
+      margin: 0 5px;
+      border: 1px solid #e7eaf1;
+      border-radius: 2px;
+      box-shadow: 0 1px 3px rgba(0, 37, 55, 0.05);
+      height: 30px;
       line-height: 30px;
-      font-size: 20px; }
+      width: 40px;
+      background-color: white;
+      text-align: center; }
+      .pagination ul li i {
+        line-height: 30px;
+        font-size: 20px; }
 
 footer {
   height: 200px;

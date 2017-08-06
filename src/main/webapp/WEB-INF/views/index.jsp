@@ -15,26 +15,33 @@
 <body>
 <%@ include file="component/navbar.jsp"%>
 <div class="page">
+
+    <%-- 左侧页面 --%>
     <div class="left">
 
-        <div id="list">
+        <%-- 文章列表 --%>
+        <div id="list"></div>
 
-        </div>
+        <%-- 分页 --%>
         <div class="pagination">
             <ul class="ul-left">
+                <li class="first-page"><i class="fa fa-angle-double-left"></i></li>
                 <li class="prev-page"><i class="fa fa-angle-left"></i></li>
+                <li class="current-page"></li>
                 <li class="next-page"><i class="fa fa-angle-right"></i></li>
+                <li class="last-page"><i class="fa fa-angle-double-right"></i></li>
             </ul>
         </div>
     </div>
-    <div class="right">
-        <div id="categories">
 
-        </div>
+    <%-- 右侧页面，显示文章分类及其他信息 --%>
+    <div class="right">
+        <div id="categories"></div>
     </div>
 
 </div>
 
+<%-- 文章列表中的文章的模板 --%>
 <div id="article-template" style="display: none;">
     <div class="article">
         <div class="topics"></div>
@@ -51,7 +58,7 @@
     </div>
 </div>
 
-
+<%-- 页脚 --%>
 <footer>
     <div class="info">辽ICP备17010175号 | Copyright © 2017 - ffiirree - All Rights Reserved</div>
 </footer>

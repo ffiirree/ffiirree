@@ -27,6 +27,25 @@ public class ArticleController {
     @Resource private TopicMapper topicService;
     @Resource private ATMapper atsService;
 
+
+    /**
+     * 获取文章
+     */
+    @RequestMapping(method = POST)
+    @ResponseBody
+    public HashMap<String, Object> all(@RequestParam(value = "scope", defaultValue = "all")String scope,
+                                       @RequestParam(value = "page", defaultValue = "0")int page,
+                                       @RequestParam(value = "size", defaultValue = "20")int size) {
+        HashMap<String, Object> res;
+        if(scope.equals("all"))
+            res = articleService.all(page, size);
+        else
+            res = articleService.select(scope, page, size);
+
+        res.put("status", "success");
+        return res;
+    }
+
     /**
      * 文章的编辑界面
      */
@@ -76,18 +95,6 @@ public class ArticleController {
         }};
     }
 
-    /**
-     * 获取文章
-     */
-    @RequestMapping(value = "/all", method = POST)
-    @ResponseBody
-    public HashMap<String, Object> all(@RequestParam(value = "page", defaultValue = "0")int page,
-                      @RequestParam(value = "size", defaultValue = "20")int size) {
-
-        HashMap<String, Object> res = articleService.all(page, size);
-        res.put("status", "success");
-        return res;
-    }
 
     @RequestMapping(value = "/categories", method = POST)
     @ResponseBody

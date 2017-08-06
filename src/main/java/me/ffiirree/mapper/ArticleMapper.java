@@ -28,6 +28,20 @@ public interface ArticleMapper {
     })
     List<Article> all(@Param("start") int start, @Param("size")int size);
 
+
+    @Select({ "select articles.*, categories.name as category from articles, categories" +
+            " where articles.cid=categories.id and categories.name=#{scope}" +
+            " ORDER BY submitTime DESC limit #{start}, #{size}" })
+    @Results({
+            @Result(property = "id", column = "id"),
+            @Result(property = "topics", javaType = List.class, column = "id",
+                    many = @Many(select = "me.ffiirree.mapper.ATMapper.all"))
+    })
+    List<Article> select(@Param("scope")String scope, @Param("start") int start, @Param("size")int size);
+
     @Select("select count(id) from articles")
     Long countAll();
+
+    @Select({"select count(articles.id) from articles, categories where articles.cid=categories.id and categories.name=#{scope}"})
+    Long count(String scope);
 }

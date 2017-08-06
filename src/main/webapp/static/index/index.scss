@@ -166,15 +166,18 @@ header {
 
 // 分页
 .pagination {
+    text-align: center;
     ul {
-        width: 100px;
+        display: inline-block;
         margin: 20px auto;
 
         li {
+            margin: 0 5px;
             border: 1px solid #e7eaf1;
             border-radius: 2px;
             box-shadow: 0 1px 3px rgba(0,37,55,.05);
             height: 30px;
+            line-height: 30px;
             width: 40px;
             background-color: white;
             text-align: center;
