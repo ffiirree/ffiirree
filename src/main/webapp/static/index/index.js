@@ -31,16 +31,28 @@ FIRE.index = (function () {
         return value ? (window.location.hash = '!/' + value): window.location.hash.toString().replace('#!/', '');
     }
 
+    /**
+     * 返回分类值
+     * * @private
+     */
     function __scope__() {
-        return /scope=([^&]+)/g.exec(__hash__())[1];
+        return /scope=(\d+)/g.exec(__hash__())[1];
     }
 
+    /**
+     * 返回页面值
+     * @private
+     */
     function __page__() {
         return /page=(\d+)/g.exec(__hash__())[1];
     }
 
+    /**
+     * 获取文章列表，并进行渲染
+     * @private
+     */
     function __articles__(val) {
-        $.post('/article', { scope: val.scope, page: val.page, size:3 }, function (data) {
+        $.post('/article', { scope: val.scope, page: val.page, size:10 }, function (data) {
 
             if(data.status === "success") {
                 attr.lastPage = data.page;
@@ -51,6 +63,10 @@ FIRE.index = (function () {
         })
     }
 
+    /**
+     * 渲染列表中的一篇文章
+     * @private
+     */
     function __render__(articles) {
         $('#list').html('');
 
@@ -62,7 +78,7 @@ FIRE.index = (function () {
                 category: article.category,
                 submitTime: article.submitTime.substr(0, 10),
                 readNumber: article.readNumber,
-                commentNumber: 32
+                commentNumber: 0
             };
 
             let $article = $('#article-template').tmpl(data);
@@ -77,6 +93,9 @@ FIRE.index = (function () {
         });
     }
 
+    /**
+     * 为attr定义setter和getter，绑定
+     */
     Object.defineProperty(attr, 'route', {
         get:function () {
             return {
@@ -86,7 +105,7 @@ FIRE.index = (function () {
         },
         set:function (val) {
 
-            __hash__(__hash__().replace(/scope=([^&]+)/g, 'scope=' + val.scope));
+            __hash__(__hash__().replace(/scope=(\d+)/g, 'scope=' + val.scope.toString()));
             __hash__(__hash__().replace(/page=(\d+)/g, 'page=' + val.page.toString()));
 
             $('.current-page').html(__page__());
@@ -99,10 +118,10 @@ FIRE.index = (function () {
           $.post('/article/categories', null, function (data) {
               if(data.status === "success"){
                   data.categories.forEach(function (item) {
-                      let $c = $('<div class="'+item.id+'">'+item.name+'</div>');
+                      let $c = $('<div class="' + item.id + '"><span>' + item.name + '</span><span>('+ item.count +')</span></div>');
                       $('#categories').append($c);
 
-                      $c.click(() => attr.route = { page: 0,scope: item.name });
+                      $c.click(() => attr.route = { page: 0,scope: item.id });
                   });
               }
           })
@@ -110,8 +129,8 @@ FIRE.index = (function () {
 
         articles:function () {
             if(!__hash__()) {
-                __hash__("scope=all&page=0");
-                attr.route = {page:0, scope:'all'};
+                __hash__("scope=0&page=0");
+                attr.route = {page:0, scope: 0};
             }
             else {
                 attr.route = {page:__page__(), scope:__scope__()};

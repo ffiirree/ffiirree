@@ -10,4 +10,10 @@ import lombok.NoArgsConstructor;
 public class Category {
     private Long id;
     private String name;
+    private Long count;
+
+    public Category(Long id, String name){
+        this.id = id;
+        this.name = name;
+    }
 }

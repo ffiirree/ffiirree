@@ -1,48 +1,25 @@
 /**
- * Created by ice on 2017/5/17.
+ * Created by ice on 2017/5/9.
  *
  */
 $(document).ready(function () {
 
-    // 解析文章(Markdown)
-    FIRE.article.parse({
-        $content: $('#article-content'),
-        $preview: $('#article-preview')
-    });
+    zmd.parse();
 
-
-    //
-    $('.page').css({
-        width: window.screen.width/2
-    });
-
-    // 评论框
-    autosize($('.review-content'));
-
-    $('.review-content').focus(function () {
-        $('.article-review-box').css({
-            'border-color': '#00b0e8'
-        })
-    }).blur(function () {
-        $('.article-review-box').css({
-            'border-color': '#aaaaaa'
-        });
-    });
-
-
+    $('#zmd-textarea').bind('input propertychange', zmd.parse);
 });
 
-if(typeof FIRE === "undefined") FIRE = {};
-FIRE.article = (function () {
+let zmd = {};
+zmd = (function () {
 
-    let config = {};
+    let updateEventId = 0;
 
     /**
      * 标记Markdown文本
      * @private
      */
     function __marked__() {
-        config.$preview.html(marked (config.$content.val()));
+        $('#zmd-preview').html( marked ($('#zmd-textarea').val()));
     }
 
     /**
@@ -99,18 +76,29 @@ FIRE.article = (function () {
         });
     }
 
+    /**
+     * 分析Markdown文本
+     * \ 标记文本
+     * \ 高亮代码：包括序列图和流程图
+     * \ LeTex数学公式渲染
+     * @private
+     */
+    function __parse__() {
+        MathJax.Hub.Queue(
+            [__marked__],
+            [__highlight__],
+            ["Typeset",MathJax.Hub,'zmd-preview']
+        );
+    }
+
     return{
-        parse:function (conf) {
+        parse: function () {
+            if(updateEventId)
+                clearTimeout(updateEventId);
+            else
+                __parse__();
 
-            config.$content = conf.$content;
-            config.$preview = conf.$preview;
-
-            MathJax.Hub.Queue(
-                [__marked__],
-                [__highlight__],
-                ["Typeset",MathJax.Hub,'article-preview']
-            );
+            updateEventId = setTimeout(__parse__, 350);
         }
-
-}
+    }
 })();

@@ -134,7 +134,8 @@ header {
 footer {
   height: 200px;
   background-color: white;
-  position: relative; }
+  position: relative;
+  margin-top: 25px; }
   footer .info {
     width: 100%;
     text-align: center;

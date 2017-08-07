@@ -1,0 +1,327 @@
+@charset "UTF-8";
+/*///////////////////////// -- body -- ///////////////////////*/
+.body {
+  margin: 0;
+  padding: 0; }
+
+/*///////////////////////// -- button -- ///////////////////////*/
+.button {
+  border: none;
+  outline: none;
+  height: auto;
+  width: auto;
+  border-radius: 5px;
+  background-color: #00AAAA;
+  color: white; }
+
+.button:hover {
+  background-color: #00b0e8;
+  cursor: pointer; }
+
+/*///////////////////////// -- ul -- ///////////////////////*/
+.menu {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  overflow: auto;
+  height: auto; }
+
+.menu li {
+  padding: 0;
+  margin: 0;
+  height: auto;
+  float: left; }
+
+.float-ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  overflow: auto;
+  height: auto; }
+
+.float-ul li {
+  padding: 0;
+  margin: 0;
+  height: auto;
+  float: left; }
+
+.float-ul-left {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  overflow: auto;
+  height: auto; }
+
+.float-ul-left li {
+  padding: 0;
+  margin: 0;
+  height: auto;
+  float: left; }
+
+.float-ul-right {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  overflow: auto;
+  height: auto; }
+
+.float-ul-right li {
+  padding: 0;
+  margin: 0;
+  height: auto;
+  float: right; }
+
+/*///////////////////////// -- hr -- ///////////////////////*/
+.hr {
+  border: none;
+  border-top: #cccccc 1px solid; }
+
+/*///////////////////////// -- a -- ///////////////////////*/
+.a {
+  text-decoration-line: none;
+  color: #00AAAA; }
+
+.a:hover {
+  color: #00b0e8; }
+
+/*///////////////////////// -- input -- ///////////////////////*/
+.input {
+  display: block;
+  border: none;
+  outline: none;
+  margin: 0;
+  padding: 0; }
+
+/*///////////////////////// -- textarea -- ///////////////////////*/
+.textarea {
+  display: block;
+  padding: 0;
+  margin: 0;
+  resize: none;
+  outline: none;
+  border: none;
+  background-color: white; }
+
+/*///////////////////////// -- scrollbar -- ///////////////////////*/
+.scrollbar::-webkit-scrollbar {
+  width: 12px; }
+
+.scrollbar::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background: #cccccc; }
+
+.scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #aaaaaa; }
+
+body {
+  margin: 0;
+  padding: 0; }
+
+/*///////////////////////////// 标题 /////////////////////////*/
+.zmd-title-input-margin {
+  padding: 0 60px;
+  border-top: #aaaaaa 1px solid;
+  /* 输入 */ }
+  .zmd-title-input-margin #zmd-title-input {
+    display: block;
+    border: none;
+    outline: none;
+    margin: 0;
+    padding: 0; }
+  .zmd-title-input-margin #zmd-title-input {
+    width: 100%;
+    height: 49px;
+    font-family: "Microsoft YaHei UI", sans-serif;
+    font-size: 24px;
+    line-height: 50px; }
+
+/*///////////////////////////// 菜单 /////////////////////////*/
+.zmd-menu {
+  height: 40px;
+  background-color: #CCCCCC;
+  /* 提交按钮 */ }
+  .zmd-menu ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    overflow: auto;
+    height: 40px; }
+  .zmd-menu ul li {
+    padding: 0;
+    margin: 0;
+    height: 40px;
+    float: left; }
+  .zmd-menu ul {
+    display: inline-block;
+    padding: 0 0 0 35px; }
+    .zmd-menu ul li i {
+      display: block;
+      height: 40px;
+      line-height: 40px;
+      text-align: center;
+      width: 40px;
+      cursor: pointer; }
+    .zmd-menu ul li i:hover {
+      background-color: #888888; }
+  .zmd-menu #zmd-submit-box {
+    display: inline-block;
+    float: right;
+    height: 40px;
+    line-height: 40px;
+    margin-right: 50px; }
+    .zmd-menu #zmd-submit-box button {
+      border: none;
+      outline: none;
+      height: 30px;
+      width: 65px;
+      border-radius: 5px;
+      background-color: #00AAAA;
+      color: white; }
+    .zmd-menu #zmd-submit-box button:hover {
+      background-color: #00b0e8;
+      cursor: pointer; }
+
+/*///////////////////////////// 编辑和预览 /////////////////////////*/
+#zmd-editor {
+  display: flex;
+  position: absolute;
+  top: 90px;
+  bottom: 0;
+  width: 100%;
+  /*///////////////////////////// 编辑 /////////////////////////*/
+  /*///////////////////////////// 预览 /////////////////////////*/ }
+  #zmd-editor #zmd-textarea-scroll::-webkit-scrollbar {
+    width: 12px; }
+  #zmd-editor #zmd-textarea-scroll::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background: #cccccc; }
+  #zmd-editor #zmd-textarea-scroll::-webkit-scrollbar-thumb:hover {
+    background: #aaaaaa; }
+  #zmd-editor #zmd-textarea-scroll {
+    width: 50%;
+    height: 100%;
+    overflow-y: auto; }
+    #zmd-editor #zmd-textarea-scroll #zmd-textarea-box {
+      margin: auto;
+      height: 100%; }
+      #zmd-editor #zmd-textarea-scroll #zmd-textarea-box #zmd-textarea-margin {
+        padding: 0;
+        margin: 0 40px 0 60px;
+        height: 100%;
+        cursor: text; }
+        #zmd-editor #zmd-textarea-scroll #zmd-textarea-box #zmd-textarea-margin #zmd-textarea {
+          display: block;
+          padding: 0;
+          margin: 0;
+          resize: none;
+          outline: none;
+          border: none;
+          background-color: white; }
+        #zmd-editor #zmd-textarea-scroll #zmd-textarea-box #zmd-textarea-margin #zmd-textarea {
+          width: 100%;
+          /*min-height: 100%;*/
+          font-family: "Microsoft YaHei UI", sans-serif;
+          font-size: 16px;
+          line-height: 26px; }
+  #zmd-editor #zmd-preview-scroll::-webkit-scrollbar {
+    width: 12px; }
+  #zmd-editor #zmd-preview-scroll::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background: #cccccc; }
+  #zmd-editor #zmd-preview-scroll::-webkit-scrollbar-thumb:hover {
+    background: #aaaaaa; }
+  #zmd-editor #zmd-preview-scroll {
+    width: 50%;
+    height: 100%;
+    overflow-y: auto;
+    background-color: #eeeeea; }
+    #zmd-editor #zmd-preview-scroll #zmd-preview-margin {
+      width: 100%;
+      margin: auto; }
+      #zmd-editor #zmd-preview-scroll #zmd-preview-margin #zmd-preview {
+        margin: 0 60px 0 40px;
+        overflow-y: auto;
+        font-family: "Microsoft YaHei UI", sans-serif;
+        font-size: 16px;
+        line-height: 26px;
+        /*overflow-x: hidden;*/
+        word-wrap: break-word; }
+
+/*///////////////////////////// 插入链接窗口 /////////////////////////*/
+.dialog-box-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); }
+  .dialog-box-background .dialog-box {
+    background-color: white;
+    width: 500px;
+    margin: 200px auto auto;
+    padding-bottom: 25px; }
+    .dialog-box-background .dialog-box .dialog-box-title {
+      background-color: #cccccc;
+      height: 35px;
+      line-height: 35px;
+      text-align: center;
+      font-size: 20px; }
+
+.link-title,
+.link-url,
+.picture-title {
+  margin: 15px 0;
+  padding: 5px 25px; }
+
+.link-title input,
+.link-url input,
+.picture-title input {
+  height: 20px;
+  line-height: 20px;
+  font-size: 16px;
+  width: 375px; }
+
+.link-window-operation,
+.picture-window-operation {
+  overflow: auto;
+  padding: 5px 15px; }
+  .link-window-operation button,
+  .picture-window-operation button {
+    border: none;
+    outline: none;
+    height: 30px;
+    width: 65px;
+    border-radius: 5px;
+    background-color: #00AAAA;
+    color: white; }
+  .link-window-operation button:hover,
+  .picture-window-operation button:hover {
+    background-color: #00b0e8;
+    cursor: pointer; }
+  .link-window-operation button,
+  .picture-window-operation button {
+    float: right;
+    margin: 0 10px; }
+
+.picture-upload {
+  border: #aaaaaa 1px dashed;
+  border-radius: 5px;
+  position: relative;
+  width: 250px;
+  height: 100px;
+  line-height: 100px;
+  text-align: center;
+  margin: 10px auto; }
+
+.picture-upload input:hover {
+  cursor: pointer; }
+
+.picture-upload input {
+  position: absolute;
+  top: 0;
+  right: 0;
+  opacity: 0;
+  width: 250px;
+  height: 100px; }
+
+/*# sourceMappingURL=zmdUI.css.map */

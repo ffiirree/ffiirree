@@ -1,0 +1,91 @@
+
+.article-details-background {
+    position: fixed;
+    top:0;
+    left:0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.article-details {
+    width: 650px;
+    overflow: auto;
+
+    margin: 200px auto auto;
+    background-color: white;
+}
+
+.article-details .title {
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+
+    background-color: #eeeeee;
+    font-size: 18px;
+}
+
+.article-details .input-bar {
+    display: flex;
+    flex-flow: row;
+    margin: 20px 20px;
+}
+
+.article-details .input-bar >div{
+    flex: 0 0 85px;
+    height: 35px;
+    line-height: 35px;
+}
+
+.article-details .input-bar .topics-bar,
+.article-details .input-bar select {
+    flex: 1 1 auto;
+    outline: none;
+    padding: 0;
+    border: solid 1px #dddddd;
+}
+.article-details .input-bar .topics-bar {
+    display: flex;
+    flex-flow: row;
+}
+
+.article-details .input-bar .topics-bar .add-topics {
+    flex: 0 1 auto;
+}
+.article-details .input-bar .topics-bar input{
+    flex: 1 1 auto;
+    outline: none;
+    border: none;
+    padding: 0 10px;
+}
+
+.topic-cell {
+    background-color: #eff6fa;
+    font-size: 13px;
+    border-radius: 12px;
+    padding: 0 10px;
+    height: 24px;
+    line-height: 24px;
+    display: inline-block;
+    color: #3a90f2;
+    margin: 0 5px;
+}
+.topic-cell:hover {
+    cursor: pointer;
+}
+.topic-cell span:first-child {
+}
+
+.topic-cell span:last-child {
+    margin-left: 10px;
+
+}
+
+.article-details button {
+    float: right;
+    margin-right: 20px;
+    height: 35px;
+    width: 100px;
+
+    margin-bottom: 10px;
+}

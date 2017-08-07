@@ -1,10 +1,9 @@
 /**
  * Created by ice on 17-5-11.
- *
  */
 $(document).ready(function () {
     menuOperation();
-    dragUploadFile('zmd-textarea');
+    dragUploadFile('zmd-textarea-margin');
 });
 
 /**
@@ -12,30 +11,30 @@ $(document).ready(function () {
  */
 function menuOperation() {
 
-    var textarea = document.getElementById('zmd-textarea');
+    let textarea = document.getElementById('zmd-textarea');
     ztxt.config('zmd-textarea');
 
-    var $bold = $('#zmd-bold');
-    var $italic = $('#zmd-italic');
-    var $chain = $('#zmd-chain');
+    let $bold = $('#zmd-bold');
+    let $italic = $('#zmd-italic');
+    let $chain = $('#zmd-chain');
 
-    var $quote = $('#zmd-quote');
-    var $code = $('#zmd-code');
-    var $math = $('#zmd-math');
+    let $quote = $('#zmd-quote');
+    let $code = $('#zmd-code');
+    let $math = $('#zmd-math');
 
-    var $picture =$('#zmd-picture');
-    var $list_ul = $('#zmd-list-ul');
-    var $list_ol = $('#zmd-list-ol');
-    var $table = $('#zmd-table');
+    let $picture =$('#zmd-picture');
+    let $list_ul = $('#zmd-list-ul');
+    let $list_ol = $('#zmd-list-ol');
+    let $table = $('#zmd-table');
 
-    var $header = $('#zmd-header');
-    var $line = $('#zmd-line');
-    var $undo = $('#zmd-undo');
-    var $redo = $('#zmd-redo');
-    var $save = $('#zmd-save');
-    var $open = $('#zmd-open');
-    var $download  = $('#zmd-download');
-    var $question = $('#zmd-question');
+    let $header = $('#zmd-header');
+    let $line = $('#zmd-line');
+    let $undo = $('#zmd-undo');
+    let $redo = $('#zmd-redo');
+    let $save = $('#zmd-save');
+    let $open = $('#zmd-open');
+    let $download  = $('#zmd-download');
+    let $question = $('#zmd-question');
 
 
     /**
@@ -61,7 +60,7 @@ function menuOperation() {
      * 插入链接
      */
     {
-        var $linkWindow = $('.link-window-background');
+        let $linkWindow = $('.link-window-background');
 
         $('.link-cancel').click(function () {
             $linkWindow.hide();
@@ -118,7 +117,7 @@ function menuOperation() {
      * 插入图片
      */
     {
-        var $pictureWindow = $('.picture-window-background');
+        let $pictureWindow = $('.picture-window-background');
 
         $('.picture-cancel').click(function () {
             $pictureWindow.hide();
@@ -142,7 +141,7 @@ function menuOperation() {
         });
 
         $('.picture-upload input').change(function () {
-            var filename = $('.picture-upload input')[0].files[0].name;
+            let filename = $('.picture-upload input')[0].files[0].name;
             $('.picture-upload-title').html(filename);
         });
 
@@ -217,17 +216,17 @@ function menuOperation() {
      * 生成文件并下载到本地
      */
     $download.click(function () {
-        var title = $('#zmd-title-input').val();
+        let title = $('#zmd-title-input').val();
 
         if(title === '')
             title = 'zmd-download.md';
         else
             title += '.md';
 
-        var aLink = document.createElement('a');
-        var blob = new Blob([textarea.value]);
+        let aLink = document.createElement('a');
+        let blob = new Blob([textarea.value]);
 
-        var url = window.URL.createObjectURL(blob);
+        let url = window.URL.createObjectURL(blob);
         aLink.download = title;
         aLink.href = url;
         aLink.click();
@@ -237,13 +236,13 @@ function menuOperation() {
     // 打开本地文件进行编辑
     {
         $('#input-file').change(function () {
-            var file = this.files[0];
+            let file = this.files[0];
 
             $('#zmd-title-input').val(file.name.replace('.md',''));
 
-            var reader = new FileReader();
+            let reader = new FileReader();
             reader.onload = function (evt) {
-                var $textarea = $(textarea);
+                let $textarea = $(textarea);
 
                 $textarea.val(evt.target.result);
                 autosize.update($textarea);
@@ -273,8 +272,8 @@ function menuOperation() {
  * 插入链接
  */
 function insertLink() {
-    var title = $('.link-title input').val();
-    var url = $('.link-url input').val();
+    let title = $('.link-title input').val();
+    let url = $('.link-url input').val();
 
     if(title === '' && url !== '') {
         title = url;
@@ -283,7 +282,7 @@ function insertLink() {
         return;
     }
 
-    var link = '[' + title +'](' + url +')';
+    let link = '[' + title +'](' + url +')';
     ztxt.insert(link);
 }
 
@@ -292,19 +291,24 @@ function insertLink() {
  */
 function insertPicture() {
 
-    var title = $('.picture-title input').val();
-    var url = '';
+    let title = $('.picture-title input').val();
+    let file = $('.picture-upload input')[0].files[0];
 
-    var file = $('.picture-upload input')[0].files[0];
+    let fd = new FormData();
+    fd.append('file', file);
+    $.ajax({
+        url: '/article/image',
+        type: "POST",
+        data: fd,
+        async: true,
+        processData: false,
+        contentType: false,
 
-    // $.ajax({
-    //
-    // })
-
-    if(!file || url) return;
-
-    var picture = '![' + title + '](' + url +')';
-    ztxt.insert(picture);
+        success: function(data) {
+            if(data.status === "success")
+                ztxt.insert('![' + title +']('+ data.url +')');
+        }
+    });
 }
 
 /**
@@ -312,7 +316,7 @@ function insertPicture() {
  * @param area_id
  */
 function dragUploadFile(area_id) {
-    var dropzone = document.getElementById(area_id);
+    let dropzone = document.getElementById(area_id);
     dropzone.addEventListener('dragover', handleDragOver, false);
     dropzone.addEventListener('drop', handleFileSelect, false);
 }
@@ -328,20 +332,19 @@ function handleFileSelect(evt) {
     evt.stopPropagation();
     evt.preventDefault();
 
-    var file = evt.dataTransfer.files[0];
+    let file = evt.dataTransfer.files[0];
     if (!file.type.match('image.*')) {
         return;
     }
     else if(file.size > 10 * 1024 * 1024){
-        alert('文章添加的图片大小不能超过10MB!');
-        // messageBox('O_O\'', '文章添加的图片大小不能超过10MB！');
+        messageBox('O_O\'', '文章添加的图片大小不能超过10MB！');
         return;
     }
 
-    var fd = new FormData();
-    fd.append('file', f);
+    let fd = new FormData();
+    fd.append('file', file);
     $.ajax({
-        url: '/upload_article_image',
+        url: '/article/image',
         type: "POST",
         data: fd,
         async: true,
@@ -349,7 +352,8 @@ function handleFileSelect(evt) {
         contentType: false,
 
         success: function(data) {
-            ztxt.insert('![在这里写描述]('+ data +')');
+            if(data.status === "success")
+                ztxt.insert('![' + file.name +']('+ data.url +')');
         }
     });
 }
@@ -358,7 +362,7 @@ function handleFileSelect(evt) {
 
 (function () {
 
-    var textarea = { };
+    let textarea = { };
 
     this.ztxt = {
         config:function (textareaId) {
@@ -372,15 +376,15 @@ function handleFileSelect(evt) {
             /**
              * 记录光标位置
              */
-            var strPos = textarea.selectionStart;
-            var insertText = first;
+            let strPos = textarea.selectionStart;
+            let insertText = first;
 
             if(arguments.length === 2) {
                 /**
                  * 获取选中的文本
                  */
-                var endPos = textarea.selectionEnd;
-                var select =(textarea.value).substring(strPos, endPos);
+                let endPos = textarea.selectionEnd;
+                let select =(textarea.value).substring(strPos, endPos);
 
                 insertText = first + select + second;
             }

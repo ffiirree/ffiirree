@@ -6,15 +6,14 @@
   Time: 19:07
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
     <title>${article.title}</title>
     <link type="text/css" rel="stylesheet" href="<c:url value="/static/default/default.css"/>">
-    <link type="text/css" rel="stylesheet" href="<c:url value="/static/component/navbar.css"/>">
-    <link type="text/css" rel="stylesheet" href="<c:url value="/static/editor/mark.css"/>">
+    <link type="text/css" rel="stylesheet" href="<c:url value="/static/editor/style/mark.css"/>">
     <link rel="stylesheet" href="<c:url value="/static/plugins/font-awesome/css/font-awesome.min.css"/>">
-    <link type="text/css" rel="stylesheet" href="<c:url value="/static/plugins/highlight/styles/default.css"/>">
+    <link type="text/css" rel="stylesheet" href="<c:url value="/static/plugins/highlight/styles/agate.css"/>">
     <link type="text/css" rel="stylesheet" href="<c:url value="/static/article/article.css"/>">
     <script type="text/javascript" rel="script" src="<c:url value="/static/plugins/jquery-3.2.1.min.js"/> "></script>
     <script type="text/javascript" rel="script" src="<c:url value="/static/plugins/autosize.min.js"/> "></script>
@@ -41,20 +40,18 @@
     </script>
     <script type="text/javascript" src="/static/plugins/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" rel="script" src="<c:url value="/static/plugins/msgbox.js"/>"></script>
-    <script type="text/javascript" rel="script" src="<c:url value="/static/component/navbar.js"/> "></script>
     <script type="text/javascript" rel="script" src="<c:url value="/static/article/article.js"/>"></script>
 </head>
 <%@include file="../component/navbar.jsp"%>
 <body>
 <div class="page">
-    <div style="display: none;" id="article_user_id">${article.user_id}</div>
     <textarea title="" style="display:none;" id="article-content">${article.content}</textarea>
     <article class="article">
         <div class="title">
             ${article.title}
         </div>
         <div class="article-details">
-            阅读(${article.read_num}) 最后更新于${article.last_edit_time}
+            阅读(${article.readNumber}) 最后更新于${article.editTime}
         </div>
         <div id="article-preview" class="content mark">
 

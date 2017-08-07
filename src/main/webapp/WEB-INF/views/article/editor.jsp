@@ -13,10 +13,11 @@
     <meta charset="UTF-8">
     <title>写文章</title>
     <link type="text/css" rel="stylesheet" href="<c:url value="/static/default/default.css"/>">
-    <link type="text/css" rel="stylesheet" href="<c:url value="/static/editor/zmdUI.css"/>">
-    <link type="text/css" rel="stylesheet" href="<c:url value="/static/editor/mark.css"/>">
+    <link type="text/css" rel="stylesheet" href="<c:url value="/static/editor/style/zmdUI.css"/>">
+    <link type="text/css" rel="stylesheet" href="<c:url value="/static/editor/editor.css"/>">
+    <link type="text/css" rel="stylesheet" href="<c:url value="/static/editor/style/mark.css"/>">
     <link rel="stylesheet" href="<c:url value="/static/plugins/font-awesome/css/font-awesome.min.css"/>">
-    <link type="text/css" rel="stylesheet" href="<c:url value="/static/plugins/highlight/styles/default.css"/>">
+    <link type="text/css" rel="stylesheet" href="<c:url value="/static/plugins/highlight/styles/agate.css"/>">
     <script type="text/javascript" rel="script" src="<c:url value="/static/plugins/jquery-3.2.1.min.js"/> "></script>
     <script type="text/javascript" rel="script" src="<c:url value="/static/plugins/autosize.min.js"/> "></script>
     <script type="text/javascript" rel="script" src="<c:url value="/static/plugins/marked.min.js"/> "></script>
@@ -41,9 +42,9 @@
         });
     </script>
     <script type="text/javascript" src="/static/plugins/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/javascript" rel="script" src="<c:url value="/static/editor/zmdUI.js"/>"></script>
-    <script type="text/javascript" rel="script" src="<c:url value="/static/editor/zmdMenu.js"/>"></script>
-    <script type="text/javascript" rel="script" src="<c:url value="/static/editor/mark.js"/>"></script>
+    <script type="text/javascript" rel="script" src="<c:url value="/static/editor/script/zmdUI.js"/>"></script>
+    <script type="text/javascript" rel="script" src="<c:url value="/static/editor/script/zmdMenu.js"/>"></script>
+    <script type="text/javascript" rel="script" src="<c:url value="/static/editor/script/mark.js"/>"></script>
     <script type="text/javascript" rel="script" src="<c:url value="/static/plugins/msgbox.js"/>"></script>
     <script type="text/javascript" rel="script" src="<c:url value="/static/editor/editor.js"/>"></script>
 </head>
@@ -109,9 +110,9 @@
 </div>
 
 <!-- === 链接输入框 === -->
-<div class="link-window-background" style="display: none;">
-    <div class="link-window">
-        <div class="link-window-title">
+<div class="link-window-background dialog-box-background" style="display: none;">
+    <div class="link-window dialog-box">
+        <div class="link-window-title dialog-box-title">
             链接
         </div>
         <div class="link-title">
@@ -131,9 +132,9 @@
 
 
 <!-- === 链接输入框 === -->
-<div class="picture-window-background" style="display: none">
-    <div class="picture-window">
-        <div class="picture-window-title">
+<div class="picture-window-background dialog-box-background" style="display: none">
+    <div class="picture-window dialog-box">
+        <div class="picture-window-title dialog-box-title">
             图片
         </div>
         <div class="picture-title">
@@ -151,7 +152,6 @@
         </div>
     </div>
 </div>
-
 
 <div class="article-details-background" style="display: none">
     <div class="article-details">

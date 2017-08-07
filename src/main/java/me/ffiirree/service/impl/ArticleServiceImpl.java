@@ -47,10 +47,10 @@ public class ArticleServiceImpl implements IArticleService {
     }
 
     @Override
-    public HashMap<String, Object> select(String scope, int page, int size) {
+    public HashMap<String, Object> select(Long cid, int page, int size) {
 
-        final List<Article>  articles = articleMapper.select(scope, page * size, size);
-        Long count = articleMapper.count(scope);
+        final List<Article>  articles = articleMapper.select(cid, page * size, size);
+        Long count = articleMapper.count(cid);
 
         boolean hasNext = false;
         if(count > (page + 1) * size){

@@ -4,7 +4,7 @@
  */
 $(document).ready(function () {
 
-    autosize($('#zmd-textarea'));
+    autosize($('textarea'));
 
     splitScreen();
 
@@ -15,14 +15,14 @@ $(document).ready(function () {
      * 自动设置编辑区的高度，使得编辑区下方总会存在一块空白，
      * 这样使得编辑更加方便
      */
-    var autoEditorBlank =  (function () {
-        var originalHeight = $('#zmd-textarea').height();
+    let autoEditorBlank = (function () {
+        let originalHeight = $('#zmd-textarea').height();
 
         return function () {
-            var textareaHeight = $('#zmd-textarea').height();
-            var previewHeight = $('#zmd-preview').height();
+            let textareaHeight = $('#zmd-textarea').height();
+            let previewHeight = $('#zmd-preview').height();
 
-            var clientHeight = $('#zmd-textarea-box').height();
+            let clientHeight = $('#zmd-textarea-box').height();
 
 
             // 设置margin高度，保证底部有一定的空白区域，提高编辑体验
@@ -45,13 +45,13 @@ $(document).ready(function () {
  */
 function scroll() {
 
-    var $textarea = $('#zmd-textarea');
-    var $preview = $('#zmd-preview');
+    let $textarea = $('#zmd-textarea');
+    let $preview = $('#zmd-preview');
 
-    var $textareaScroll = $('#zmd-textarea-scroll');
-    var $previewScroll = $('#zmd-preview-scroll');
+    let $textareaScroll = $('#zmd-textarea-scroll');
+    let $previewScroll = $('#zmd-preview-scroll');
 
-    var mouseX = 0, mouseY = 0;
+    let mouseX = 0, mouseY = 0;
 
     $(document).mousemove(function(e){
         mouseX = e.pageX;
@@ -62,10 +62,10 @@ function scroll() {
         if(mouseX > $(window).width()/2)
             return;
 
-       var textareaHeight = $textarea.height() - $textareaScroll.height();
-       var previewHeight = $preview.height() - $previewScroll.height();
+        let textareaHeight = $textarea.height() - $textareaScroll.height();
+        let previewHeight = $preview.height() - $previewScroll.height();
 
-       var previewScrollTop = $textareaScroll.scrollTop() * (previewHeight / textareaHeight);
+        let previewScrollTop = $textareaScroll.scrollTop() * (previewHeight / textareaHeight);
 
         $previewScroll.scrollTop(previewScrollTop);
     });
@@ -74,10 +74,10 @@ function scroll() {
         if(mouseX < $(window).width()/2)
             return;
 
-        var textareaHeight = $textarea.height() - $textareaScroll.height();
-        var previewHeight = $preview.height() - $previewScroll.height();
+        let textareaHeight = $textarea.height() - $textareaScroll.height();
+        let previewHeight = $preview.height() - $previewScroll.height();
 
-        var textareaScrollTop  = $previewScroll.scrollTop() * (textareaHeight / previewHeight);
+        let textareaScrollTop  = $previewScroll.scrollTop() * (textareaHeight / previewHeight);
 
         $textareaScroll.scrollTop(textareaScrollTop);
     });
@@ -88,11 +88,11 @@ function scroll() {
  */
 function splitScreen() {
 
-    var $textareaScroll = $('#zmd-textarea-scroll');
-    var $previewScroll = $('#zmd-preview-scroll');
+    let $textareaScroll = $('#zmd-textarea-scroll');
+    let $previewScroll = $('#zmd-preview-scroll');
 
-    var $previewBtn =$('#zmd-preview-button');
-    var $nonpreviewBtn = $('#zmd-nonpreview-button');
+    let $previewBtn =$('#zmd-preview-button');
+    let $nonpreviewBtn = $('#zmd-nonpreview-button');
 
 
     // 分栏

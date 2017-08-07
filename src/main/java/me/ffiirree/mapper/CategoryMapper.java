@@ -1,8 +1,7 @@
 package me.ffiirree.mapper;
 
 import me.ffiirree.model.Category;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -10,6 +9,11 @@ import java.util.List;
 @Mapper
 @Component
 public interface CategoryMapper {
-    @Select("select * from categories")
+    @Select({ "select * from categories" })
+    @Results({
+            @Result(property = "id", column = "id"),
+            @Result(property = "count", javaType = Long.class, column = "id",
+                    many = @Many(select = "me.ffiirree.mapper.ArticleMapper.count"))
+    })
     List<Category> all();
 }

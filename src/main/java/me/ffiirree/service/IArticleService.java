@@ -8,5 +8,5 @@ public interface IArticleService {
     HashMap<String, Object> getArticle(Long id);
 
     HashMap<String, Object> all(int page, int size);
-    HashMap<String, Object> select(String scope, int page, int size);
+    HashMap<String, Object> select(Long cid, int page, int size);
 }
