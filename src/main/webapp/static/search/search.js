@@ -12,9 +12,6 @@ $(document).ready(function () {
         }
     });
 
-    // 改变搜索词的颜色
-
-
 });
 
 if(typeof FIRE === "undefined") FIRE = {};
@@ -62,7 +59,7 @@ FIRE.search = (function () {
             $('.current-page').html(__page__());
 
 
-            $('.title li').attr('class', '');
+            $('.header li').attr('class', '');
             $('#' + __type__()).attr("class",  "selected");
 
             __search__($('#search-input').val());
@@ -87,12 +84,12 @@ FIRE.search = (function () {
 
             !data.page ? $('.pagination').hide() : $('.pagination').show();
             let $article = $('#article-template').tmpl(data);
-            // let $topics = $article.find('.topics');
-            //
-            // article.topics.forEach(function (item) {
-            //     let $topic = $('<span class="topic">' + item.name + '</span>');
-            //     $topics.append($topic)
-            // });
+            let $topics = $article.find('.topics');
+
+            article.topics.forEach(function (item) {
+                let $topic = $('<span class="topic">' + item.name + '</span>');
+                $topics.append($topic)
+            });
 
             $article.appendTo('#list');
         });

@@ -46,7 +46,14 @@ public interface ArticleMapper {
     @Select({"select count(articles.id) from articles, categories where articles.cid=categories.id and categories.id=#{cid}"})
     Long count(@Param("cid") Long cid);
 
-    @Select({"select * from articles where title LIKE concat(concat('%', #{word}),'%') limit #{start}, #{size}" })
+    @Select({ "select articles.*, categories.name as category from articles, categories" +
+            " where articles.cid=categories.id and title LIKE concat(concat('%', #{word}),'%')" +
+            " ORDER BY submitTime DESC limit #{start}, #{size}" })
+    @Results({
+            @Result(property = "id", column = "id"),
+            @Result(property = "topics", javaType = List.class, column = "id",
+                    many = @Many(select = "me.ffiirree.mapper.ATMapper.all"))
+    })
     List<Article> search(@Param("word")String word, @Param("start") int start, @Param("size") int size);
 
 

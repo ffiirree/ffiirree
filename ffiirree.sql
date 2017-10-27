@@ -49,6 +49,9 @@ create table article_read_number(
 );
 select * from article_read_number;
 insert into article_read_number values(3, '127.0.0.1', default);
+
+select * from article_read_number where aid=3 and ip='0:0:0:0:0:0:0:1' order by timestamp desc limit 1;
+
 ##################################################################################################
 create table categories(
 	id bigint auto_increment primary key,

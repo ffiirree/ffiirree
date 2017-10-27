@@ -17,12 +17,12 @@
 <body>
 <%@ include file="component/navbar.jsp"%>
 
-<div class="page" style="display: none">
+<div class="page">
 
     <%-- 左侧页面 --%>
     <div class="left">
 
-        <ul class="title ul-left">
+        <ul class="header ul-left">
             <li id="article">文章</li>
             <li id="topic">话题</li>
         </ul>

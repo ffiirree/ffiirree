@@ -18,21 +18,25 @@ header {
   min-height: 100%; }
   .page .left {
     flex: 1 1 auto; }
-    .page .left .title li {
-      background-color: #f3f3f3;
-      text-align: center;
-      line-height: 45px;
-      width: 125px;
+    .page .left .header {
+      border-bottom: 1px solid #3a90f2;
       height: 45px;
-      border-bottom: none;
-      border-top: 3px solid #f3f3f3;
-      border-left: 1px solid white;
-      border-right: 1px solid white; }
-    .page .left .title .selected {
-      color: #3a90f2;
-      border-top: 3px solid #3a90f2;
-      border-left: 1px solid #3a90f2;
-      border-right: 1px solid #3a90f2; }
+      overflow: visible !important; }
+      .page .left .header li {
+        background-color: #f3f3f3;
+        text-align: center;
+        line-height: 46px;
+        width: 125px;
+        height: 46px;
+        box-sizing: border-box;
+        border-top: 3px solid wheat;
+        border-bottom: 1px solid #3a90f2; }
+      .page .left .header .selected {
+        color: #3a90f2;
+        background-color: #f7f8fa;
+        border: 1px solid #3a90f2;
+        border-top-width: 3px;
+        border-bottom-color: #f7f8fa; }
   .page .right {
     flex: 0 0 300px;
     padding-left: 10px; }
@@ -58,14 +62,10 @@ header {
 
 .article {
   box-sizing: border-box;
-  background-color: white;
   display: flex;
   flex-flow: column;
-  border: 1px solid #e7eaf1;
-  border-radius: 2px;
-  box-shadow: 0 1px 3px rgba(0, 37, 55, 0.05);
-  margin-top: 15px;
-  padding: 16px 20px; }
+  padding: 16px 20px;
+  border-bottom: 1px solid #CCCCCC; }
   .article .topics {
     flex: 0 0 30px; }
     .article .topics .topic {

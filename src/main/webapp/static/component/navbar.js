@@ -3,6 +3,8 @@
  *
  */
 $(document).ready(function () {
-
+    $('#search-input').click(function () {
+        window.location.href = "/search#!/type=article&page=0";
+    });
 });
 

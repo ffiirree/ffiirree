@@ -15,10 +15,6 @@ $(document).ready(function() {
     $('.prev-page').click(() => FIRE.index.prevPage());
     $('.next-page').click(() => FIRE.index.nextPage());
     $('.last-page').click(() => FIRE.index.lastPage());
-
-    $('#search-input').click(function () {
-        window.location.href = "/search#!/type=article&page=0";
-    });
 });
 
 if(typeof FIRE === "undefined") FIRE = {};
