@@ -3,6 +3,9 @@
  *
  */
 $(document).ready(function() {
+
+    $('#index-loading').remove();
+
     FIRE.index.categories();
     // 渲染文章列表
     FIRE.index.articles();
@@ -13,6 +16,9 @@ $(document).ready(function() {
     $('.next-page').click(() => FIRE.index.nextPage());
     $('.last-page').click(() => FIRE.index.lastPage());
 
+    $('#search-input').click(function () {
+        window.location.href = "/search#!/type=article&page=0";
+    });
 });
 
 if(typeof FIRE === "undefined") FIRE = {};

@@ -9,6 +9,7 @@ create table users(
 );
 
 select * from users;
+insert into users values(default, 'ffiirree', 960215, default, default, 'ice_qi@163.com', default);
 
 ##################################################################################################
 # article
@@ -29,10 +30,25 @@ create table articles(
     foreign key(cid) references categories(id) on delete no action
 );
 
+
+
 select * from articles;
+update articles set readNumber=readNumber+1 where id = 3;
 
-insert into articles values(default, 1, 1, "C++11的主要变化", "sdfasdkfjaj a阿里斯顿发上来看风景啊啥两地分居艾尚理得发安萨里法德啊", 0, default, default);
+insert into articles values(default, 1, 1, "C++11的主要化", "sdfasdkfjaj a阿里斯顿发上来看风景啊啥两地分居艾尚理得发安萨里法德啊", 0, default, default);
 
+
+create table article_read_number(
+	aid bigint not null,
+    ip varchar(40) not null,
+    times int default 0,
+    timestamp timestamp default current_timestamp on update current_timestamp,
+    
+    primary key(aid, ip, timestamp),
+    foreign key(aid) references articles(id) on delete no action
+);
+select * from article_read_number;
+insert into article_read_number values(3, '127.0.0.1', default);
 ##################################################################################################
 create table categories(
 	id bigint auto_increment primary key,
@@ -54,6 +70,7 @@ create table topics(
     submitTime timestamp default current_timestamp
 );
 
+select * from topics;
 
 create table ats(
 	aid bigint not null,

@@ -11,15 +11,13 @@
 
 
     <div class="primary-nav-box">
-
-
         <div class="logo">
             <a href="<c:url value="/home"/>">ffiirree </a>
         </div>
 
         <div class="search">
             <div class="search-bar">
-                <input placeholder="搜索文章">
+                <input id="search-input" placeholder="搜索文章">
                 <div class="fa fa-search"></div>
             </div>
         </div>

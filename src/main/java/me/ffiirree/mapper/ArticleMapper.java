@@ -1,6 +1,7 @@
 package me.ffiirree.mapper;
 
 import me.ffiirree.model.Article;
+import me.ffiirree.model.ArticleReadRecord;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Component;
 
@@ -44,4 +45,20 @@ public interface ArticleMapper {
 
     @Select({"select count(articles.id) from articles, categories where articles.cid=categories.id and categories.id=#{cid}"})
     Long count(@Param("cid") Long cid);
+
+    @Select({"select * from articles where title LIKE concat(concat('%', #{word}),'%') limit #{start}, #{size}" })
+    List<Article> search(@Param("word")String word, @Param("start") int start, @Param("size") int size);
+
+
+    @Insert("insert into article_read_number(aid, ip) values(#{id}, #{ip});")
+    void insert_reader(@Param("id") Long id, @Param("ip") String ip);
+
+    @Update("update articles set readNumber=readNumber+1 where id=#{id}")
+    void update_read_number(@Param("id") Long id);
+
+    @Update("update article_read_number set times=times+1 where aid=#{id} and ip=#{ip} and timestamp=#{timestamp}")
+    void update_reader(@Param("id") Long id, @Param("ip") String ip, @Param("timestamp") String timestamp);
+
+    @Select("select * from article_read_number where aid=#{id} and ip=#{ip} order by timestamp desc limit 1")
+    ArticleReadRecord select_reader(@Param("id") Long id, @Param("ip") String ip);
 }

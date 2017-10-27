@@ -4,6 +4,8 @@ import me.ffiirree.model.Topic;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Mapper
 @Component
 public interface TopicMapper {
@@ -17,4 +19,7 @@ public interface TopicMapper {
 
     @Select("select * from topics where name=#{name}")
     Topic selectByName(@Param("name") String name);
+
+    @Select({"select * from topics where name LIKE concat(concat('%', #{word}),'%') limit #{start}, #{size}" })
+    List<Topic> search(@Param("word") String word, @Param("start") int start, @Param("size") int size);
 }

@@ -95,8 +95,29 @@ body {
     resize: none; /*取消拖动*/
 }
 
-.review-button-box {
+.submit-box {
     height: 50px;
+    line-height: 50px;
+    display: flex;
+
+    input {
+        flex: 1 1 auto;
+        margin: 10px 20px 10px 0;
+        padding: 0 5px;
+        outline: none;
+        border: none;
+        border-bottom: solid 1px #aaaaaa;
+        border-radius: 3px;
+        color: #00b0e8;
+    }
+
+    input:focus {
+        border-color: #00b0e8;
+    }
+
+    button {
+        flex: 0 0 75px;
+    }
 }
 
 #review-button {
@@ -104,19 +125,20 @@ body {
 
     margin: 10px auto;
     outline: none;
-    border: none;
 
-    height: 35px;
+    height: 30px;
     width: 75px;
 
     border-radius: 5px;
 
-    background-color: #00b0e8;
-    color: white;
+    border: 1px solid #00b0e8;
+    background-color: white;
+    color: #00b0e8;
 }
 
 #review-button:hover {
-    background-color: #1f7199;
+    background-color: #00b0e8;
+    color: white;
     cursor: pointer;
 }
 

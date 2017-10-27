@@ -4,33 +4,34 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>ffiirree</title>
+    <title>搜索</title>
     <link rel="shortcut icon" href="<c:url value="/static/img/icon/favicon.ico"/>" />
     <link type="text/css" rel="stylesheet" href="<c:url value="/static/default/default.css"/>">
     <link type="text/css" rel="stylesheet" href="<c:url value="/static/plugins/font-awesome/css/font-awesome.min.css"/>">
-    <link type="text/css" rel="stylesheet" href="<c:url value="/static/index/index.css"/>">
+    <link type="text/css" rel="stylesheet" href="<c:url value="/static/search/search.css"/>">
     <script type="text/javascript" rel="script" src="<c:url value="/static/plugins/jquery-3.2.1.min.js"/> "></script>
     <script type="text/javascript" rel="script" src="<c:url value="/static/plugins/template.js"/> "></script>
-    <script type="text/javascript" rel="script" src="<c:url value="/static/index/index.js"/> "></script>
+    <script type="text/javascript" rel="script" src="<c:url value="/static/search/search.js"/> "></script>
 </head>
+
 <body>
-
-<div class="spinner" id="index-loading">
-    <div class="double-bounce1"></div>
-    <div class="double-bounce2"></div>
-</div>
-
 <%@ include file="component/navbar.jsp"%>
-<div class="page">
+
+<div class="page" style="display: none">
 
     <%-- 左侧页面 --%>
     <div class="left">
+
+        <ul class="title ul-left">
+            <li id="article">文章</li>
+            <li id="topic">话题</li>
+        </ul>
 
         <%-- 文章列表 --%>
         <div id="list"></div>
 
         <%-- 分页 --%>
-        <div class="pagination">
+        <div class="pagination" style="display: none;">
             <ul class="ul-left">
                 <li class="first-page"><i class="fa fa-angle-double-left"></i></li>
                 <li class="prev-page"><i class="fa fa-angle-left"></i></li>
@@ -43,7 +44,7 @@
 
     <%-- 右侧页面，显示文章分类及其他信息 --%>
     <div class="right">
-        <div id="categories"></div>
+
     </div>
 
 </div>
@@ -65,9 +66,5 @@
     </div>
 </div>
 
-<%-- 页脚 --%>
-<footer>
-    <div class="info">辽ICP备17010175号 | Copyright © 2017 - ffiirree - All Rights Reserved</div>
-</footer>
 </body>
 </html>

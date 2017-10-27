@@ -52,7 +52,7 @@
             ${article.title}
         </div>
         <div class="article-details">
-            阅读(${article.readNumber}) 最后更新于${article.editTime}
+            阅读(${article.readNumber}) UPDATE ${article.editTime}
         </div>
         <div id="article-preview" class="content mark">
 
@@ -72,7 +72,9 @@
                 <div class="review-input-box">
                     <textarea name="content" title="" class="review-content"></textarea>
                 </div>
-                <div class="review-button-box">
+                <div class="submit-box">
+                    <input placeholder="输入昵称">
+                    <input placeholder="输入邮箱，作为您的唯一标识">
                     <button type="button" id="review-button">发表评论</button>
                 </div>
             </form>

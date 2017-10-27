@@ -3,6 +3,7 @@ package me.ffiirree.controller;
 import me.ffiirree.mapper.ATMapper;
 import me.ffiirree.mapper.CategoryMapper;
 import me.ffiirree.mapper.TopicMapper;
+import me.ffiirree.model.Article;
 import me.ffiirree.model.Topic;
 import me.ffiirree.model.User;
 import me.ffiirree.service.IArticleService;
@@ -16,6 +17,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -67,9 +69,22 @@ public class ArticleController {
      * 文章显示界面
      */
     @RequestMapping(value = "/{id}", method = GET)
-    public String article(@PathVariable("id") Long id, Model model) {
+    public String article(@PathVariable("id") Long id, Model model, HttpServletRequest request) throws ParseException {
 
-        model.addAttribute("article", articleService.getArticle(id));
+        HashMap<String, Object> article = articleService.getArticle(id);
+        model.addAttribute("article", article);
+
+        String ip="";
+
+        if (request != null) {
+            ip = request.getHeader("X-FORWARDED-FOR");
+            if (ip == null || "".equals(ip)) {
+                ip = request.getRemoteAddr();
+            }
+        }
+
+
+        articleService.read(id, ip);
 
         return "article/article";
     }

@@ -29,7 +29,6 @@ $(document).ready(function () {
         });
     });
 
-
 });
 
 if(typeof FIRE === "undefined") FIRE = {};
@@ -99,6 +98,17 @@ FIRE.article = (function () {
         });
     }
 
+    function __hx__() {
+        // 获取文章所有的标题
+        let _nodes = config.$preview[0].childNodes;
+        let pattern = /^H[1-6]$/g;
+        _nodes.forEach(function (item) {
+            if(item.nodeType === 1 && pattern.test(item.tagName)){
+                console.log(item.innerHTML);
+            }
+        });
+    }
+
     return{
         parse:function (conf) {
 
@@ -108,6 +118,7 @@ FIRE.article = (function () {
             MathJax.Hub.Queue(
                 [__marked__],
                 [__highlight__],
+                [__hx__],
                 ["Typeset",MathJax.Hub,'article-preview']
             );
         }

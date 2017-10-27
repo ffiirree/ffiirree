@@ -11,10 +11,12 @@ header {
     top: 0;
 }
 
+.search-word{
+    color: red;
+}
 
-// 页面设置
 .page {
-    margin: 50px auto auto;
+    margin: 75px auto auto;
     display: flex;
     flex-flow: row;
     width: 1000px;
@@ -22,6 +24,28 @@ header {
 
     .left {
         flex: 1 1 auto;
+
+        .title {
+
+            li {
+                background-color: #f3f3f3;
+                text-align: center;
+                line-height: 45px;
+                width: 125px;
+                height: 45px;
+                border-bottom: none;
+                border-top: 3px solid #f3f3f3;
+                border-left: 1px solid white;
+                border-right: 1px solid white;
+            }
+
+            .selected {
+                color: #3a90f2;
+                border-top: 3px solid #3a90f2;
+                border-left: 1px solid #3a90f2;
+                border-right: 1px solid #3a90f2;
+            }
+        }
     }
 
     .right {
@@ -188,21 +212,5 @@ header {
                 font-size: 20px;
             }
         }
-    }
-}
-
-footer {
-    height: 200px;
-    background-color: white;
-    position: relative;
-    margin-top: 25px;
-
-    .info {
-        width: 100%;
-        text-align: center;
-        color: #888888;
-        font-size: 13px;
-        position: absolute;
-        bottom: 10px;
     }
 }
