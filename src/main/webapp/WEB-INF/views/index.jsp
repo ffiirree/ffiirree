@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <title>ffiirree</title>
-    <link rel="shortcut icon" href="<c:url value="/static/img/icon/favicon.ico"/>" />
+    <link rel="shortcut icon" href="<c:url value="/static/image/icon/favicon.ico"/>" />
     <link type="text/css" rel="stylesheet" href="<c:url value="/static/default/default.css"/>">
     <link type="text/css" rel="stylesheet" href="<c:url value="/static/plugins/font-awesome/css/font-awesome.min.css"/>">
     <link type="text/css" rel="stylesheet" href="<c:url value="/static/index/index.css"/>">

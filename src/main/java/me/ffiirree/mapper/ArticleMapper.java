@@ -24,6 +24,8 @@ public interface ArticleMapper {
             " ORDER BY submitTime DESC limit #{start}, #{size}" })
     @Results({
             @Result(property = "id", column = "id"),
+            @Result(property = "reviewNumber", column = "id",
+                    one = @One(select = "me.ffiirree.mapper.ArticleReviewMapper.count")),
             @Result(property = "topics", javaType = List.class, column = "id",
                     many = @Many(select = "me.ffiirree.mapper.ATMapper.all"))
     })
@@ -35,6 +37,8 @@ public interface ArticleMapper {
             " ORDER BY submitTime DESC limit #{start}, #{size}" })
     @Results({
             @Result(property = "id", column = "id"),
+            @Result(property = "reviewNumber", column = "id",
+                    one = @One(select = "me.ffiirree.mapper.ArticleReviewMapper.count")),
             @Result(property = "topics", javaType = List.class, column = "id",
                     many = @Many(select = "me.ffiirree.mapper.ATMapper.all"))
     })
@@ -51,6 +55,8 @@ public interface ArticleMapper {
             " ORDER BY submitTime DESC limit #{start}, #{size}" })
     @Results({
             @Result(property = "id", column = "id"),
+            @Result(property = "reviewNumber", column = "id",
+                    one = @One(select = "me.ffiirree.mapper.ArticleReviewMapper.count")),
             @Result(property = "topics", javaType = List.class, column = "id",
                     many = @Many(select = "me.ffiirree.mapper.ATMapper.all"))
     })

@@ -22,6 +22,7 @@ public class Article {
     private String title;
     private String content;
     private Long readNumber;
+    private Long reviewNumber;
 
     private List<Topic> topics;
     private String category;

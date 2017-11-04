@@ -10,7 +10,7 @@
 <html>
 <head>
     <title>Sign Up</title>
-    <link rel="shortcut icon" href="<c:url value="/static/img/icon/favicon.ico"/>" />
+    <link rel="shortcut icon" href="<c:url value="/static/image/icon/favicon.ico"/>" />
     <link type="text/css" rel="stylesheet" href="<c:url value="/static/default/default.css"/>">
     <link type="text/css" rel="stylesheet" href="<c:url value="/static/user/signup.css"/>">
     <script type="text/javascript" rel="script" src="<c:url value="/static/plugins/jquery-3.2.1.min.js"/> "></script>

@@ -80,7 +80,7 @@ FIRE.index = (function () {
                 category: article.category,
                 submitTime: article.submitTime.substr(0, 10),
                 readNumber: article.readNumber,
-                commentNumber: 0
+                commentNumber: article.reviewNumber
             };
 
             let $article = $('#article-template').tmpl(data);
