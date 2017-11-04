@@ -1,23 +1,16 @@
 @charset "utf-8";
 
 body {
-    background-color: #cccccc;
-}
-
-.page {
-    background-color: white;
-    padding: 50px 0;
-    width: 400px;
-    display: block;
-    margin: 10% auto auto;
-
-    box-shadow: 0 0 15px 5px #aaaaaa;
+    background-color: #f7f8fa;
 }
 
 .login-form {
-    width: 350px;
-    margin: auto;
+    margin: 10% auto auto;
+    padding: 50px 0;
+    width: 400px;
     background-color: white;
+
+    box-shadow: 0 0 15px 5px #aaaaaa;
 
     .title {
         margin: 25px;
@@ -29,11 +22,12 @@ body {
 
     #password,
     #username {
-        width: inherit;
+        width: 350px;
     }
 
     #submit{
-        width: inherit;
+        width: 350px;
+        margin: 0 25px;
         height: 40px;
     }
 

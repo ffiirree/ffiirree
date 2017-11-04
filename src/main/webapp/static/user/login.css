@@ -1,18 +1,12 @@
 body {
-  background-color: #cccccc; }
-
-.page {
-  background-color: white;
-  padding: 50px 0;
-  width: 400px;
-  display: block;
-  margin: 10% auto auto;
-  box-shadow: 0 0 15px 5px #aaaaaa; }
+  background-color: #f7f8fa; }
 
 .login-form {
-  width: 350px;
-  margin: auto;
-  background-color: white; }
+  margin: 10% auto auto;
+  padding: 50px 0;
+  width: 400px;
+  background-color: white;
+  box-shadow: 0 0 15px 5px #aaaaaa; }
   .login-form .title {
     margin: 25px;
     height: 25px;
@@ -21,9 +15,10 @@ body {
     text-align: center; }
   .login-form #password,
   .login-form #username {
-    width: inherit; }
+    width: 350px; }
   .login-form #submit {
-    width: inherit;
+    width: 350px;
+    margin: 0 25px;
     height: 40px; }
   .login-form .notices {
     font-size: 13px;

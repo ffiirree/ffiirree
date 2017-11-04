@@ -3,11 +3,10 @@ package me.ffiirree.controller;
 import me.ffiirree.mapper.ATMapper;
 import me.ffiirree.mapper.CategoryMapper;
 import me.ffiirree.mapper.TopicMapper;
-import me.ffiirree.model.Article;
 import me.ffiirree.model.Topic;
 import me.ffiirree.model.User;
+import me.ffiirree.service.IAReviewService;
 import me.ffiirree.service.IArticleService;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
@@ -36,6 +36,7 @@ public class ArticleController {
     @Resource private CategoryMapper categoryService;
     @Resource private TopicMapper topicService;
     @Resource private ATMapper atsService;
+    @Resource private IAReviewService articleReviewService;
 
 
     /**
@@ -116,6 +117,53 @@ public class ArticleController {
             put("status", "success");
             put("articleId", aid);
         }};
+    }
+
+    /**
+     * 提交评论
+     * @param aid
+     * @param rid
+     * @param content
+     * @param session
+     * @return
+     */
+    @RequestMapping(value = "/review", method = POST)
+    @ResponseBody
+    public HashMap<String, Object> review(@RequestParam("aid") Long aid,
+                                          @RequestParam("atuid") Long atuid,
+                                          @RequestParam("rid") Long rid,
+                                          @RequestParam("content") String content,
+                                          HttpSession session){
+
+        User user = (User) session.getAttribute("current_user");
+        if(user != null) {
+            System.out.print("评论"+content);
+
+            articleReviewService.insert(user.getId(), atuid, aid, rid, content);
+
+            return new HashMap<String, Object>(){{
+                put("status", "success");
+            }};
+        }
+        // Login
+        else {
+            return new HashMap<String, Object>(){{
+                put("status", "login");
+            }};
+        }
+    }
+
+    @RequestMapping(value = "/reviews", method = POST)
+    @ResponseBody
+    public HashMap<String, Object> reviews(@RequestParam("aid") Long aid,
+                                           @RequestParam("page") int page,
+                                           @RequestParam("size") int size){
+
+
+        HashMap<String, Object> res = articleReviewService.getById(aid, page, size);
+
+        res.put("status", "success");
+        return res;
     }
 
     @RequestMapping(value = "/image", method = POST)

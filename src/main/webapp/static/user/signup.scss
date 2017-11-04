@@ -1,22 +1,15 @@
 @charset "utf-8";
 
 body {
-    background-color: #cccccc;
+    background-color: #f7f8fa;
 }
 
-.page {
-    background-color: white;
-    padding: 50px 0;
-    width: 400px;
-    display: block;
-    margin: 10% auto auto;
-
-    box-shadow: 0 0 15px 5px #aaaaaa;
-}
 
 .signup {
-    width: 350px;
-    margin: auto;
+    padding: 50px 0;
+    width: 400px;
+    margin: 10% auto auto;
+    box-shadow: 0 0 15px 5px #aaaaaa;
     background-color: white;
 
     .title {
@@ -30,11 +23,12 @@ body {
     #password,
     #username,
     #email {
-        width: inherit;
+        width: 350px;
     }
 
     #submit {
-        width: inherit;
+        width: 350px;
+        margin: 0 25px;
         height: 40px;
     }
 

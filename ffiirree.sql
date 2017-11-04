@@ -86,16 +86,14 @@ create table ats(
 ##################################################################################################
 create table article_reviews(
 	id bigint auto_increment primary key,
+    uid bigint not null,
+    atuid bigint not null,
     aid bigint not null,
-    reply_id int not null default 0,
-    
-    mine_id int not null,
-    his_id int default 0,					# 被回复评论的用户id
+    rid bigint not null,
     
     content text collate utf8_general_ci not null,
-    submit_time timestamp default current_timestamp,
+    submitTime timestamp default current_timestamp,
     
-    foreign key(article_id) references articles(id) on delete cascade,
-    
-    foreign key(mine_id) references users(id) on delete no action
+    foreign key(aid) references articles(id) on delete cascade,
+    foreign key(uid) references users(id) on delete no action
 );

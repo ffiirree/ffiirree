@@ -17,7 +17,12 @@ public class ArticleReview {
     private Long id;
     private Long aid;
     private Long uid;
+    private Long rid;
+
+    private User user;
+    private User atu;
+
 
     private String content;
-    private Timestamp submitTime;
+    private String submitTime;
 }

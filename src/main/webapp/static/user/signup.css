@@ -1,17 +1,11 @@
 body {
-  background-color: #cccccc; }
-
-.page {
-  background-color: white;
-  padding: 50px 0;
-  width: 400px;
-  display: block;
-  margin: 10% auto auto;
-  box-shadow: 0 0 15px 5px #aaaaaa; }
+  background-color: #f7f8fa; }
 
 .signup {
-  width: 350px;
-  margin: auto;
+  padding: 50px 0;
+  width: 400px;
+  margin: 10% auto auto;
+  box-shadow: 0 0 15px 5px #aaaaaa;
   background-color: white; }
   .signup .title {
     margin: 25px;
@@ -22,9 +16,10 @@ body {
   .signup #password,
   .signup #username,
   .signup #email {
-    width: inherit; }
+    width: 350px; }
   .signup #submit {
-    width: inherit;
+    width: 350px;
+    margin: 0 25px;
     height: 40px; }
   .signup .notices {
     font-size: 13px;

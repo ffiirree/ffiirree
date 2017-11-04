@@ -4,6 +4,9 @@
  */
 $(document).ready(function () {
 
+    let rid = 0;
+    let atuid = 0;
+
     // 解析文章(Markdown)
     FIRE.article.parse({
         $content: $('#article-content'),
@@ -29,6 +32,116 @@ $(document).ready(function () {
         });
     });
 
+    $.post("/article/reviews", {aid: aid, page: 0, size: 20}, function (data) {
+
+        if(data.status !== "success")
+            return;
+
+        $("#review-number").html(data.count);
+
+        data.reviews.forEach(function (item, index) {
+            let data = {
+                id: item.id,
+                index: index,
+                username: item.user.username,
+                avatar: item.user.avatar,
+                content: item.content,
+                submitTime: item.submitTime
+            };
+
+            if(!item.rid) {
+
+                let $review = $('#review-template').tmpl(data);
+
+                $review.find(".reply").click(function () {
+
+                    rid = item.id;
+                    atuid = item.user.id;
+
+                    $("#at_name").html(item.user.username);
+                    $('#at_content').html(item.content);
+
+                    $(".reply-background").show();
+                });
+
+                $review.appendTo("#review-list");
+            }
+            else {
+
+                data.at_name = item.atu.username;
+
+                let $review = $('#reply-template').tmpl(data);
+
+                $review.find(".reply").click(function () {
+
+                    rid = item.rid;
+                    atuid = item.user.id;
+
+                    $("#at_name").html(item.user.username);
+                    $('#at_content').html(item.content);
+
+                    $(".reply-background").show();
+                });
+
+                console.log($review + "#review_" + item.rid)
+
+                $review.appendTo("#review_" + item.rid);
+            }
+
+        });
+    });
+
+    $("#review-button").click(function () {
+        let $textarea = $("#review-textarea");
+        let content = $textarea.val();
+
+        if(content !== "") {
+            $.post("/article/review", { aid: aid, atuid: 0, rid: 0, content: content }, function (data) {
+                if(data.status === "login") {
+                    $(".login").show();
+                }
+                else if(data.status === "success") {
+                    $textarea.val("");
+                }
+            });
+        }
+    });
+
+    $('#submit').click(function () {
+        let username = $('#username').val();
+        let password = $('#password').val();
+
+        $.post('/user/login', {username:username, password: password}, function (data) {
+            if(data.status === "success")
+                $(".login").hide();
+        });
+    });
+
+    $("#reply").click(function () {
+        let $textarea = $("#reply-textarea");
+        let content = $textarea.val();
+
+        if(content !== "") {
+            $.post("/article/review", { aid: aid, atuid:atuid, rid: rid, content: content }, function (data) {
+                if(data.status === "login") {
+                    $(".login").show();
+                }
+                else if(data.status === "success") {
+                    $textarea.val("");
+                    $('.reply-background').hide();
+                }
+            });
+        }
+    });
+
+
+    $(".reply-background").click(function () {
+        $(this).hide();
+    });
+
+    $('.article-review').click(function (evt) {
+        evt.stopPropagation();
+    });
 });
 
 if(typeof FIRE === "undefined") FIRE = {};
@@ -122,6 +235,5 @@ FIRE.article = (function () {
                 ["Typeset",MathJax.Hub,'article-preview']
             );
         }
-
 }
 })();

@@ -46,64 +46,44 @@ body {
 
 /*//////////////////////// -- 文章的评论 -- ///////////////////////*/
 .article-review {
-  min-height: 250px;
-  padding: 25px 75px 50px 75px; }
+  background-color: white;
+  padding: 50px 75px; }
 
 .article-review-box {
   border: #aaaaaa 1px solid;
   padding: 10px 15px;
   border-radius: 5px; }
-
-#add-review {
-  padding: 0;
-  margin: 0; }
-
-.review-content {
-  width: 100%;
-  min-height: 100px;
-  outline: none;
-  border: none;
-  font-family: '微软雅黑', serif;
-  resize: none;
-  /*取消拖动*/ }
-
-.submit-box {
-  height: 50px;
-  line-height: 50px;
-  display: flex; }
-  .submit-box input {
-    flex: 1 1 auto;
-    margin: 10px 20px 10px 0;
-    padding: 0 5px;
+  .article-review-box .review-content {
+    width: 100%;
+    min-height: 100px;
     outline: none;
     border: none;
-    border-bottom: solid 1px #aaaaaa;
-    border-radius: 3px;
-    color: #00b0e8; }
-  .submit-box input:focus {
-    border-color: #00b0e8; }
-  .submit-box button {
-    flex: 0 0 75px; }
-
-#review-button {
-  float: right;
-  margin: 10px auto;
-  outline: none;
-  height: 30px;
-  width: 75px;
-  border-radius: 5px;
-  border: 1px solid #00b0e8;
-  background-color: white;
-  color: #00b0e8; }
-
-#review-button:hover {
-  background-color: #00b0e8;
-  color: white;
-  cursor: pointer; }
+    font-family: '微软雅黑', serif;
+    resize: none;
+    /*取消拖动*/ }
+  .article-review-box .submit-box {
+    height: 45px; }
+    .article-review-box .submit-box button {
+      float: right;
+      margin: 5px auto;
+      outline: none;
+      height: 35px;
+      width: 85px;
+      border-radius: 5px;
+      border: 1px solid #00b0e8;
+      background-color: white;
+      color: #00b0e8; }
+    .article-review-box .submit-box button:hover {
+      background-color: #00b0e8;
+      color: white;
+      cursor: pointer; }
 
 /*//////////////////////// -- 展示评论 -- ///////////////////////*/
+.review-number {
+  margin: 10px 75px; }
+
 .display-review {
-  padding: 25px 75px 50px 75px; }
+  padding: 0px 75px 50px 75px; }
   .display-review .review-list .review {
     border-bottom: #cccccc 1px solid;
     padding-bottom: 10px; }
@@ -112,12 +92,13 @@ body {
       display: flex;
       flex-flow: row; }
       .display-review .review-list .review .primary-review .user-info .user-avatar {
-        flex: 0 0 50px;
-        height: 50px; }
+        flex: 0 0 45px;
+        height: 45px; }
         .display-review .review-list .review .primary-review .user-info .user-avatar img {
-          height: 50px;
-          width: 50px;
-          border-radius: 50%; }
+          height: 44px;
+          width: 44px;
+          border-radius: 50%;
+          border: solid 1px #F0F0F0; }
       .display-review .review-list .review .primary-review .user-info .details {
         flex: 1 1 auto;
         padding-left: 10px; }
@@ -128,16 +109,16 @@ body {
       margin: 10px 35px; }
     .display-review .review-list .review .primary-review .primary-operation ul {
       overflow: hidden;
-      margin-bottom: 10px; }
+      margin-bottom: 5px; }
     .display-review .review-list .review .primary-review .primary-operation ul li {
-      float: right;
-      font-size: 14px;
-      color: #888888; }
+      font-size: 13px;
+      color: #888888;
+      margin: 0 35px; }
 
 /*//////////////////////// -- 二级评论 -- ///////////////////////*/
 .secondary-review {
-  margin-left: 20px;
-  padding: 10px 25px;
+  margin-left: 50px;
+  padding: 5px 25px;
   border-left: #00b0e8 5px solid; }
 
 .secondary-operation ul {
@@ -149,37 +130,35 @@ body {
   padding: 0;
   margin: 5px 15px 5px 0; }
 
-/*//////////////////////// -- 评论回复框 -- ///////////////////////*/
-.reply-area {
-  border: #aaaaaa 1px solid;
-  border-radius: 5px;
-  padding: 5px 10px; }
-  .reply-area .textarea-box textarea {
-    resize: none;
-    display: block;
-    width: 100%;
-    height: 50px;
-    border: none;
-    outline: none;
-    font-family: '微软雅黑', serif;
-    line-height: 23px; }
-  .reply-area ul {
-    overflow: auto; }
-    .reply-area ul li {
-      float: right;
-      height: 25px;
-      line-height: 25px;
-      font-size: 13px;
-      width: 50px;
-      text-align: center;
-      margin: 5px;
-      border-radius: 5px; }
-    .reply-area ul .cancel {
-      color: #888888; }
-    .reply-area ul .send {
-      color: white;
-      background-color: #00AAAA; }
-    .reply-area ul .send:hover {
-      background-color: #00b0e8; }
+.login-background {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.65);
+  z-index: 99999; }
+
+.login-form {
+  box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.25); }
+
+.reply-background {
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.65); }
+  .reply-background .article-review {
+    margin: 100px auto auto;
+    width: 50%;
+    padding: 25px; }
+    .reply-background .article-review .at {
+      margin: 10px 0; }
+      .reply-background .article-review .at span {
+        padding: 0 5px;
+        cursor: pointer; }
+      .reply-background .article-review .at #at_name {
+        color: #00b0e8; }
 
 /*# sourceMappingURL=article.css.map */
