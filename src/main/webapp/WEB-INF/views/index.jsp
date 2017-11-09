@@ -38,7 +38,7 @@
                     <span class="topic" x-for="topic:article.topics">{{ topic.name }}</span>
                 </div>
                 <div class="title"><a class="a" x-attr:href="'/article/' + article.id">{{ article.title }}</a></div>
-                <div class="content">{{ article.content }}</div>
+                <div class="content">{{ article.content.substr(0, 100) + '...' }}</div>
                 <div class="details">
                     <div class="category">{{ article.category }}</div>
                     <ul class="ul-right">

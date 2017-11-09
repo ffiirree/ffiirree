@@ -1,11 +1,14 @@
 /**
- * Created by ice on 2017/5/17.
+ * @file index.js
  *
+ * @author ffiirree
+ * @update 2017.11.9
  */
 $(document).ready(function() {
     $('#index-loading').remove();
     FIRE.index.render();
 });
+
 
 if(typeof FIRE === "undefined") FIRE = {};
 FIRE.index = (function () {
@@ -65,33 +68,31 @@ FIRE.index = (function () {
 
                 methods: {
                     first: function () {
-                        Router.hash.value = { scope:Router.hash.get('scope'), page: 0};
+                        attr.currentPage = 0;
+                        Router.hash.value = { scope:Router.hash.get('scope'), page: attr.currentPage };
                     },
                     next: function () {
                         attr.currentPage = attr.currentPage < attr.lastPage ? attr.currentPage + 1 : attr.lastPage;
-                        Router.hash.value = {scope:Router.hash.get('scope'), page: attr.currentPage};
+                        Router.hash.value = {scope:Router.hash.get('scope'), page: attr.currentPage };
                     },
                     prev:function () {
                         attr.currentPage = attr.currentPage > 0 ? attr.currentPage - 1 : 0;
                         Router.hash.value = { scope:Router.hash.get('scope'), page: attr.currentPage };
                     },
                     last: function () {
-                        Router.hash.value = { scope:Router.hash.get('scope'), page: attr.lastPage };
+                        attr.currentPage = attr.lastPage;
+                        Router.hash.value = { scope:Router.hash.get('scope'), page: attr.currentPage };
                     }
                 }
             })
         },
 
         articles:function () {
-
             $.post('/article', { scope:Router.hash.get('scope'), page: Router.hash.get('page'), size:10 }, function (data) {
 
                 if(data.status === "success") {
                     attr.lastPage = data.page;
                     _pagination.page = data.page;
-
-                    console.log(_pagination);
-
                     _articles.articles = data.articles;
                 }
             });

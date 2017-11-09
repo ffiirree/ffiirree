@@ -12,7 +12,6 @@ class Minx {
         this._data = options.data;
         this._methods = options.methods;
         this.$node = options.$.nodeType ? options.$ : document.querySelector(options.$);
-        console.log(this.$node);
 
         let self = this;
         Object.keys(this._data).forEach(key => {

@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 /**
  * Created by ice on 2017/5/19.
@@ -22,6 +23,7 @@ public class ArticleReview {
     private User user;
     private User atu;
 
+    private List<ArticleReview> replies;
 
     private String content;
     private String submitTime;

@@ -119,9 +119,11 @@ public class ArticleController {
         }};
     }
 
+
     /**
-     * 提交评论
+     *
      * @param aid
+     * @param atuid
      * @param rid
      * @param content
      * @param session

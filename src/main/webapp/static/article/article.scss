@@ -119,59 +119,58 @@ body {
 .review-number {
     margin: 10px 75px;
 }
-.display-review {
-    padding: 0px 75px 50px 75px;
 
-    .review-list {
-        .review {
-            border-bottom: #cccccc 1px solid;
+.review-list {
+    padding: 0 75px 50px 75px;
 
-            padding-bottom: 10px;
+    .review {
+        border-bottom: #cccccc 1px solid;
 
-            .primary-review {
-                .user-info {
-                    margin: 15px 0;
-                    display: flex;
-                    flex-flow:  row;
+        padding-bottom: 10px;
 
-                    .user-avatar {
-                        flex: 0 0 45px;
-                        height: 45px;
+        .primary-review {
+            .user-info {
+                margin: 15px 0;
+                display: flex;
+                flex-flow:  row;
 
-                        img {
-                            height: 44px;
-                            width: 44px;
-                            border-radius: 50%;
-                            border: solid 1px #F0F0F0;
-                        }
-                    }
+                .user-avatar {
+                    flex: 0 0 45px;
+                    height: 45px;
 
-                    .details {
-                        flex: 1 1 auto;
-                        padding-left: 10px;
-
-                        .review-info {
-                            font-size: 13px;
-                            color: #888888;
-                        }
+                    img {
+                        height: 44px;
+                        width: 44px;
+                        border-radius: 50%;
+                        border: solid 1px #F0F0F0;
                     }
                 }
 
-                .content {
-                    margin: 10px 35px;
+                .details {
+                    flex: 1 1 auto;
+                    padding-left: 10px;
+
+                    .review-info {
+                        font-size: 13px;
+                        color: #888888;
+                    }
                 }
+            }
+
+            .content {
+                margin: 10px 35px;
+            }
 
 
-                .primary-operation ul {
-                    overflow: hidden;
-                    margin-bottom: 5px;
-                }
+            .primary-operation ul {
+                overflow: hidden;
+                margin-bottom: 5px;
+            }
 
-                .primary-operation ul li {
-                    font-size: 13px;
-                    color: #888888;
-                    margin: 0 35px;
-                }
+            .primary-operation ul li {
+                font-size: 13px;
+                color: #888888;
+                margin: 0 35px;
             }
         }
     }

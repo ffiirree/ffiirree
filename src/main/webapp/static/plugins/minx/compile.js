@@ -215,12 +215,21 @@ class Compile{
                 node.setAttribute(_meta[1], _res);
             }
             else {
-                const _value = Compile.parse(this.$vm, attr.value);
-                node.setAttribute(_meta[1], _value.value);
+                let _res = '';
+                attr.value.split('+').forEach((item)=>{
+                    if(!/'/g.test(item)) {
+                        let _value = Compile.parse(this.$vm, item.replace(' ', ''));
+                        _res += _value.value;
 
-                new Watcher(_value.parent, _value.key, (old, val)=>{
-                    node.setAttribute(attr.name.split(':')[1], val);
+                        new Watcher(_value.parent, _value.key, (old, val)=>{
+                            node.setAttribute(attr.name.split(':')[1], val);
+                        });
+                    }
+                    else {
+                        _res += item.replace(/'/g, '');
+                    }
                 });
+                node.setAttribute(_meta[1], _res);
             }
 
             node.removeAttribute(attr.name);

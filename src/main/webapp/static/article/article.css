@@ -82,35 +82,35 @@ body {
 .review-number {
   margin: 10px 75px; }
 
-.display-review {
-  padding: 0px 75px 50px 75px; }
-  .display-review .review-list .review {
+.review-list {
+  padding: 0 75px 50px 75px; }
+  .review-list .review {
     border-bottom: #cccccc 1px solid;
     padding-bottom: 10px; }
-    .display-review .review-list .review .primary-review .user-info {
+    .review-list .review .primary-review .user-info {
       margin: 15px 0;
       display: flex;
       flex-flow: row; }
-      .display-review .review-list .review .primary-review .user-info .user-avatar {
+      .review-list .review .primary-review .user-info .user-avatar {
         flex: 0 0 45px;
         height: 45px; }
-        .display-review .review-list .review .primary-review .user-info .user-avatar img {
+        .review-list .review .primary-review .user-info .user-avatar img {
           height: 44px;
           width: 44px;
           border-radius: 50%;
           border: solid 1px #F0F0F0; }
-      .display-review .review-list .review .primary-review .user-info .details {
+      .review-list .review .primary-review .user-info .details {
         flex: 1 1 auto;
         padding-left: 10px; }
-        .display-review .review-list .review .primary-review .user-info .details .review-info {
+        .review-list .review .primary-review .user-info .details .review-info {
           font-size: 13px;
           color: #888888; }
-    .display-review .review-list .review .primary-review .content {
+    .review-list .review .primary-review .content {
       margin: 10px 35px; }
-    .display-review .review-list .review .primary-review .primary-operation ul {
+    .review-list .review .primary-review .primary-operation ul {
       overflow: hidden;
       margin-bottom: 5px; }
-    .display-review .review-list .review .primary-review .primary-operation ul li {
+    .review-list .review .primary-review .primary-operation ul li {
       font-size: 13px;
       color: #888888;
       margin: 0 35px; }

@@ -19,13 +19,25 @@ public interface ArticleReviewMapper {
     })
     List<ArticleReview> all();
 
-    @Select("select * from article_reviews where aid=#{aid} limit #{start}, #{size}")
+    @Select("select * from article_reviews where aid=#{aid} and rid=#{rid}")
     @Results({
             @Result(property = "id", column = "id"),
             @Result(property = "user", column = "uid",
                     one = @One(select = "me.ffiirree.mapper.UserMapper.getUserById")),
             @Result(property = "atu", column = "atuid",
                     one = @One(select = "me.ffiirree.mapper.UserMapper.getUserById"))
+    })
+    List<ArticleReview> getRepliesById(@Param("aid") Long aid, @Param("rid") Long rid);
+
+    @Select("select * from article_reviews where aid=#{aid} and rid=0 limit #{start}, #{size}")
+    @Results({
+            @Result(property = "id", column = "id"),
+            @Result(property = "user", column = "uid",
+                    one = @One(select = "me.ffiirree.mapper.UserMapper.getUserById")),
+            @Result(property = "atu", column = "atuid",
+                    one = @One(select = "me.ffiirree.mapper.UserMapper.getUserById")),
+            @Result(property = "replies", column = "{aid=aid, rid=id}",
+                    one = @One(select = "me.ffiirree.mapper.ArticleReviewMapper.getRepliesById"))
     })
     List<ArticleReview> getById(@Param("aid") Long aid, @Param("start") int start, @Param("size")int size);
 

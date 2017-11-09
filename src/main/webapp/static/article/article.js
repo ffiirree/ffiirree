@@ -1,6 +1,8 @@
 /**
- * Created by ice on 2017/5/17.
+ * @file article.js
  *
+ * @author ffiirree
+ * @update 2017.11.9
  */
 $(document).ready(function () {
 
@@ -34,61 +36,24 @@ $(document).ready(function () {
 
     $.post("/article/reviews", {aid: aid, page: 0, size: 20}, function (data) {
 
-        if(data.status !== "success")
-            return;
+        if(data.status === "success"){
+            new Minx({
+                $: '#reviews',
+                data: data,
+                methods: {
+                    reply(review) {
+                        console.log(review);
+                        rid = review[0].id;
+                        atuid = review[0].user.id;
 
-        $("#review-number").html(data.count);
+                        $("#at_name").html(review[0].user.username);
+                        $('#at_content').html(review[0].content);
 
-        data.reviews.forEach(function (item, index) {
-            let data = {
-                id: item.id,
-                index: index,
-                username: item.user.username,
-                avatar: item.user.avatar,
-                content: item.content,
-                submitTime: item.submitTime
-            };
-
-            if(!item.rid) {
-
-                let $review = $('#review-template').tmpl(data);
-
-                $review.find(".reply").click(function () {
-
-                    rid = item.id;
-                    atuid = item.user.id;
-
-                    $("#at_name").html(item.user.username);
-                    $('#at_content').html(item.content);
-
-                    $(".reply-background").show();
-                });
-
-                $review.appendTo("#review-list");
-            }
-            else {
-
-                data.at_name = item.atu.username;
-
-                let $review = $('#reply-template').tmpl(data);
-
-                $review.find(".reply").click(function () {
-
-                    rid = item.rid;
-                    atuid = item.user.id;
-
-                    $("#at_name").html(item.user.username);
-                    $('#at_content').html(item.content);
-
-                    $(".reply-background").show();
-                });
-
-                console.log($review + "#review_" + item.rid)
-
-                $review.appendTo("#review_" + item.rid);
-            }
-
-        });
+                        $(".reply-background").show();
+                    }
+                }
+            });
+        }
     });
 
     $("#review-button").click(function () {

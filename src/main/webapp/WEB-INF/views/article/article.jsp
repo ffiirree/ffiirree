@@ -44,6 +44,11 @@
     <script type="text/javascript" rel="script" src="<c:url value="/static/plugins/msgbox.js"/>"></script>
     <script>let aid = ${article.id};</script>
     <script type="text/javascript" rel="script" src="<c:url value="/static/plugins/template.js"/> "></script>
+    <script type="text/javascript" rel="script" src="<c:url value="/static/plugins/minx/watcher.js"/>"></script>
+    <script type="text/javascript" rel="script" src="<c:url value="/static/plugins/minx/observer.js"/>"></script>
+    <script type="text/javascript" rel="script" src="<c:url value="/static/plugins/minx/compile.js"/>"></script>
+    <script type="text/javascript" rel="script" src="<c:url value="/static/plugins/minx/router.js"/>"></script>
+    <script type="text/javascript" rel="script" src="<c:url value="/static/plugins/minx/minx.js"/>"></script>
     <script type="text/javascript" rel="script" src="<c:url value="/static/article/article.js"/>"></script>
 </head>
 <%@include file="../component/navbar.jsp"%>
@@ -79,11 +84,53 @@
         </div>
     </div>
 
-    <div class="review-number">共<span id="review-number"></span>条评论</div>
-    <hr class="fs-hr">
-    <div class="display-review">
-        <div class="review-list" id="review-list">
+    <div id="reviews">
+        <div class="review-number">共<span id="review-number">{{ count }}</span>条评论</div>
+        <hr class="fs-hr">
+        <div class="review-list">
+            <div x-for="review:reviews">
+                <%-- review start --%>
+                <div class="review" x-attr:id="'review_' + review.id">
+                    <div class="primary-review">
+                        <div class="user-info">
+                            <div class="user-avatar">
+                                <img x-attr:src="review.user.avatar"/>
+                            </div>
+                            <div class="details">
+                                <div class="user-name">{{ review.user.username }}</div>
+                                <div class="review-info">{{ review.submitTime }}</div>
+                            </div>
+                        </div>
+                        <div class="content">{{ review.content }}</div>
+                        <div class="primary-operation">
+                            <ul class="ul-left">
+                                <li x-on:click="reply(review)">回复</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class = "replies">
+                        <div x-for="reply:review.replies">
+                            <div class="secondary-review" x-attr:id="'reply_'+ reply.id ">
+                                <div class="reply-box">
+                                    <span>{{ reply.user.username }}</span>
+                                    <span>: @{{ reply.atu.username }}</span>
+                                    <span class="reply-content"> : {{ reply.content }}</span>
+                                    <div class="secondary-operation">
+                                        <ul class="ul-left">
+                                            <li>{{ reply.submitTime }}</li>
+                                            <li x-on:click="reply(review)">回复</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <%-- review end --%>
+            </div>
         </div>
+
     </div>
 </div>
 
@@ -101,53 +148,12 @@
 
 <!--== 文章的评论 ==-->
 <div class="reply-background" style="display: none;">
-
     <div class="article-review">
         <div class="at">@<span id="at_name"></span>:<span id="at_content"></span></div>
         <div class="article-review-box">
             <textarea name="content" title="" class="review-content" id="reply-textarea"></textarea>
             <div class="submit-box">
                 <button type="button" id="reply">发表评论</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
-<div class="template" id="review-template">
-    <div class="review" id="review_{{ id }}">
-        <div class = "primary-review">
-            <div class="user-info">
-                <div class="user-avatar">
-                    <a><img src="{{ avatar }}"/></a>
-                </div>
-                <div class="details">
-                    <div class="user-name"><a class="a">{{ username }} </a></div>
-                    <div class="review-info">{{ index }}楼 · {{ submitTime }}</div>
-                </div>
-            </div>
-            <div class="content">{{ content }}</div>
-            <div class="primary-operation">
-                <ul class="ul-left">
-                    <li class="reply">回复</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="template" id="reply-template">
-    <div class="secondary-review" id="reply_{{ id }}">
-        <div class="reply-box">
-            <span class="mine-name"><a >{{ username }}</a></span>
-            <span class="his-name">: <a > @{{ at_name }}</a></span>
-            <span class="reply-content"> : {{ content }}</span>
-            <div class="secondary-operation">
-                <ul class="ul-left">
-                    <li>{{ submitTime }}</li>
-                    <li class="reply">回复</li>
-                </ul>
             </div>
         </div>
     </div>
