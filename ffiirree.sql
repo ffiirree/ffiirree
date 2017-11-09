@@ -60,6 +60,7 @@ create table categories(
 );
 select * from categories;
 
+insert into categories(name) values('前端');
 insert into categories(name) values('C/C++');
 insert into categories(name) values('Javascript');
 insert into categories(name) values('CV');

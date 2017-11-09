@@ -3,18 +3,8 @@
  *
  */
 $(document).ready(function() {
-
     $('#index-loading').remove();
-
-    FIRE.index.categories();
-    // 渲染文章列表
-    FIRE.index.articles();
-
-
-    $('.first-page').click(() => FIRE.index.firstPage());
-    $('.prev-page').click(() => FIRE.index.prevPage());
-    $('.next-page').click(() => FIRE.index.nextPage());
-    $('.last-page').click(() => FIRE.index.lastPage());
+    FIRE.index.render();
 });
 
 if(typeof FIRE === "undefined") FIRE = {};
@@ -24,137 +14,87 @@ FIRE.index = (function () {
         lastPage: 0,
         currentPage:0
     };
-
-    /**
-     * 如果value 不为空则设置hash值，否则返回当前的hash值
-     * @private
-     */
-    function __hash__(value) {
-        return value ? (window.location.hash = '!/' + value): window.location.hash.toString().replace('#!/', '');
-    }
-
-    /**
-     * 返回分类值
-     * * @private
-     */
-    function __scope__() {
-        return /scope=(\d+)/g.exec(__hash__())[1];
-    }
-
-    /**
-     * 返回页面值
-     * @private
-     */
-    function __page__() {
-        return /page=(\d+)/g.exec(__hash__())[1];
-    }
-
-    /**
-     * 获取文章列表，并进行渲染
-     * @private
-     */
-    function __articles__(val) {
-        $.post('/article', { scope: val.scope, page: val.page, size:10 }, function (data) {
-
-            if(data.status === "success") {
-                attr.lastPage = data.page;
-
-                !data.page ? $('.pagination').hide() : $('.pagination').show();
-                __render__(data.articles);
-            }
-        })
-    }
-
-    /**
-     * 渲染列表中的一篇文章
-     * @private
-     */
-    function __render__(articles) {
-        $('#list').html('');
-
-        articles.forEach(function (article) {
-            let data = {
-                id: article.id,
-                title: article.title,
-                content: article.content.substr(0, 100) + '...',
-                category: article.category,
-                submitTime: article.submitTime.substr(0, 10),
-                readNumber: article.readNumber,
-                commentNumber: article.reviewNumber
-            };
-
-            let $article = $('#article-template').tmpl(data);
-            let $topics = $article.find('.topics');
-
-            article.topics.forEach(function (item) {
-                let $topic = $('<span class="topic">' + item.name + '</span>');
-                $topics.append($topic)
-            });
-
-            $article.appendTo('#list');
-        });
-    }
-
-    /**
-     * 为attr定义setter和getter，绑定
-     */
-    Object.defineProperty(attr, 'route', {
-        get:function () {
-            return {
-                scope: __scope__(),
-                page: __page__()
-            };
-        },
-        set:function (val) {
-
-            __hash__(__hash__().replace(/scope=(\d+)/g, 'scope=' + val.scope.toString()));
-            __hash__(__hash__().replace(/page=(\d+)/g, 'page=' + val.page.toString()));
-
-            $('.current-page').html(__page__());
-            __articles__(val);
-        }
-    });
+    let _articles = {}, _pagination = {};
 
     return {
-        categories:function () {
-          $.post('/article/categories', null, function (data) {
-              if(data.status === "success"){
-                  data.categories.forEach(function (item) {
-                      let $c = $('<div class="' + item.id + '"><span>' + item.name + '</span><span>('+ item.count +')</span></div>');
-                      $('#categories').append($c);
+        render: function () {
+            if(!Router.hash.value)
+                Router.hash.value = { scope: 0, page: 0};
 
-                      $c.click(() => attr.route = { page: 0,scope: item.id });
-                  });
-              }
-          })
+            this.pagination();
+            this.categories();
+            this.route();
+
+            _articles = new Minx({ $: '#list', data: { articles: [] } });
+            this.articles();
+        },
+
+        route: function () {
+            window.onhashchange = function () {
+                _pagination.current = Router.hash.get('page');
+                FIRE.index.articles();
+            }
+        },
+
+        categories:function () {
+            $.post('/article/categories', null, function (data) {
+                if(data.status === "success"){
+
+                    new Minx({
+                        $:'#categories',
+                        data: {
+                            categories: data.categories
+                        },
+                        methods: {
+                            category: function (data) {
+                                Router.hash.value = { scope: data[0], page: Router.hash.get('page') };
+                            }
+                        }
+                    });
+                }
+            });
+        },
+
+        pagination: function () {
+            _pagination = new Minx({
+                $:'#pagination',
+                data: {
+                    page: 0,
+                    current: 0
+                },
+
+                methods: {
+                    first: function () {
+                        Router.hash.value = { scope:Router.hash.get('scope'), page: 0};
+                    },
+                    next: function () {
+                        attr.currentPage = attr.currentPage < attr.lastPage ? attr.currentPage + 1 : attr.lastPage;
+                        Router.hash.value = {scope:Router.hash.get('scope'), page: attr.currentPage};
+                    },
+                    prev:function () {
+                        attr.currentPage = attr.currentPage > 0 ? attr.currentPage - 1 : 0;
+                        Router.hash.value = { scope:Router.hash.get('scope'), page: attr.currentPage };
+                    },
+                    last: function () {
+                        Router.hash.value = { scope:Router.hash.get('scope'), page: attr.lastPage };
+                    }
+                }
+            })
         },
 
         articles:function () {
-            if(!__hash__()) {
-                __hash__("scope=0&page=0");
-                attr.route = {page:0, scope: 0};
-            }
-            else {
-                attr.route = {page:__page__(), scope:__scope__()};
-            }
-        },
 
-        firstPage:function () {
-            attr.route = {page: 0, scope:__scope__()};
-        },
+            $.post('/article', { scope:Router.hash.get('scope'), page: Router.hash.get('page'), size:10 }, function (data) {
 
-        lastPage:function () {
-            attr.route = {page: attr.lastPage, scope:__scope__()};
-        },
+                if(data.status === "success") {
+                    attr.lastPage = data.page;
+                    _pagination.page = data.page;
 
-        prevPage: function () {
-            attr.currentPage = attr.currentPage > 0 ? attr.currentPage - 1 : 0;
-            attr.route = {page: attr.currentPage, scope:__scope__()};
-        },
+                    console.log(_pagination);
 
-        nextPage: function () {
-            attr.currentPage = attr.currentPage < attr.lastPage ? attr.currentPage + 1 : attr.lastPage;
-            attr.route = {page: attr.currentPage, scope:__scope__()};
+                    _articles.articles = data.articles;
+                }
+            });
         }
     }
 })();

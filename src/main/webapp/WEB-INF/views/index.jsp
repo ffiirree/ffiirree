@@ -11,6 +11,11 @@
     <link type="text/css" rel="stylesheet" href="<c:url value="/static/index/index.css"/>">
     <script type="text/javascript" rel="script" src="<c:url value="/static/plugins/jquery-3.2.1.min.js"/> "></script>
     <script type="text/javascript" rel="script" src="<c:url value="/static/plugins/template.js"/> "></script>
+    <script type="text/javascript" rel="script" src="<c:url value="/static/plugins/minx/watcher.js"/>"></script>
+    <script type="text/javascript" rel="script" src="<c:url value="/static/plugins/minx/observer.js"/>"></script>
+    <script type="text/javascript" rel="script" src="<c:url value="/static/plugins/minx/compile.js"/>"></script>
+    <script type="text/javascript" rel="script" src="<c:url value="/static/plugins/minx/router.js"/>"></script>
+    <script type="text/javascript" rel="script" src="<c:url value="/static/plugins/minx/minx.js"/>"></script>
     <script type="text/javascript" rel="script" src="<c:url value="/static/index/index.js"/> "></script>
 </head>
 <body>
@@ -27,42 +32,47 @@
     <div class="left">
 
         <%-- 文章列表 --%>
-        <div id="list"></div>
+        <div id="list">
+            <div class="article" x-for="article:articles">
+                <div class="topics">
+                    <span class="topic" x-for="topic:article.topics">{{ topic.name }}</span>
+                </div>
+                <div class="title"><a class="a" x-attr:href="'/article/' + article.id">{{ article.title }}</a></div>
+                <div class="content">{{ article.content }}</div>
+                <div class="details">
+                    <div class="category">{{ article.category }}</div>
+                    <ul class="ul-right">
+                        <li class="submit-time"><i class="fa fa-clock-o"></i><span>{{ article.submitTime }}</span></li>
+                        <li class="read-number"><i class="fa fa-eye"></i><span>{{ article.readNumber }}</span></li>
+                        <li class="comment-number"><i class="fa fa-comment"></i><span>{{ article.reviewNumber }}</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
 
         <%-- 分页 --%>
-        <div class="pagination">
-            <ul class="ul-left">
-                <li class="first-page"><i class="fa fa-angle-double-left"></i></li>
-                <li class="prev-page"><i class="fa fa-angle-left"></i></li>
-                <li class="current-page"></li>
-                <li class="next-page"><i class="fa fa-angle-right"></i></li>
-                <li class="last-page"><i class="fa fa-angle-double-right"></i></li>
+        <div class="pagination" id="pagination">
+            <ul class="ul-left" x-if="page">
+                <li class="first-page" x-on:click="first"><i class="fa fa-angle-double-left"></i></li>
+                <li class="prev-page" x-on:click="prev"><i class="fa fa-angle-left"></i></li>
+                <li class="current-page">{{ current }}</li>
+                <li class="next-page" x-on:click="next"><i class="fa fa-angle-right"></i></li>
+                <li class="last-page" x-on:click="last"><i class="fa fa-angle-double-right"></i></li>
             </ul>
         </div>
     </div>
 
     <%-- 右侧页面，显示文章分类及其他信息 --%>
     <div class="right">
-        <div id="categories"></div>
-    </div>
-
-</div>
-
-<%-- 文章列表中的文章的模板 --%>
-<div id="article-template" style="display: none;">
-    <div class="article">
-        <div class="topics"></div>
-        <div class="title"><a class="a" href="<c:url value="/article/{{id}}"/>">{{title}}</a></div>
-        <div class="content">{{content}}</div>
-        <div class="details">
-            <div class="category">{{category}}</div>
-            <ul class="ul-right">
-                <li class="submit-time"><i class="fa fa-clock-o"></i><span>{{submitTime}}</span></li>
-                <li class="read-number"><i class="fa fa-eye"></i><span>{{readNumber}}</span></li>
-                <li class="comment-number"><i class="fa fa-comment"></i><span>{{commentNumber}}</span></li>
-            </ul>
+        <div id="categories">
+            <div x-for="c:categories">
+                <div x-attr:class="c.id" x-on:click="category(c.id)">
+                    <span>{{ c.name }}</span><span>({{ c.count }})</span>
+                </div>
+            </div>
         </div>
     </div>
+
 </div>
 
 <%-- 页脚 --%>
