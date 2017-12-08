@@ -20,9 +20,9 @@ public class AReviewServiceImpl implements IAReviewService {
     }
 
     @Override
-    public HashMap<String, Object> getById(Long aid, final int page, int size) {
+    public HashMap<String, Object> getByAid(Long aid, final int page, int size) {
 
-        final List<ArticleReview> _reviews = articleReviewMapper.getById(aid, page * size, size);
+        final List<ArticleReview> _reviews = articleReviewMapper.getByAid(aid, page * size, size);
         final Long count = articleReviewMapper.count(aid);
 
         boolean hasNext = false;
@@ -41,7 +41,22 @@ public class AReviewServiceImpl implements IAReviewService {
     }
 
     @Override
-    public void insert(Long uid, Long atuid, Long aid, Long rid, String content) {
-        articleReviewMapper.insert(uid, atuid, aid, rid, content);
+    public Long insert2(Long uid, Long atuid, Long aid, Long rid, String content) {
+        return articleReviewMapper.insert2(uid, atuid, aid, rid, content);
+    }
+
+    @Override
+    public Long insert(ArticleReview review) {
+        return articleReviewMapper.insert(review);
+    }
+
+    @Override
+    public List<ArticleReview> getReplies(Long aid, Long rid) {
+        return articleReviewMapper.getRepliesById(aid, rid);
+    }
+
+    @Override
+    public ArticleReview getById(Long id) {
+        return articleReviewMapper.getById(id);
     }
 }

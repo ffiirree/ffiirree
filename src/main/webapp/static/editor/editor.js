@@ -59,7 +59,6 @@ let EDITOR = (function () {
 
             $('#topics').keyup(function (event) {
                 if(event.keyCode === 13){
-                    console.log('Ok');
 
                     let topic = $(this).val();
                     if(topic !== "" && topics.length < 5){

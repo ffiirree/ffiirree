@@ -3,10 +3,12 @@ package me.ffiirree.controller;
 import me.ffiirree.mapper.ATMapper;
 import me.ffiirree.mapper.CategoryMapper;
 import me.ffiirree.mapper.TopicMapper;
+import me.ffiirree.model.ArticleReview;
 import me.ffiirree.model.Topic;
 import me.ffiirree.model.User;
 import me.ffiirree.service.IAReviewService;
 import me.ffiirree.service.IArticleService;
+import me.ffiirree.service.impl.UserServiceImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -37,7 +39,7 @@ public class ArticleController {
     @Resource private TopicMapper topicService;
     @Resource private ATMapper atsService;
     @Resource private IAReviewService articleReviewService;
-
+    @Resource private UserServiceImpl userService;
 
     /**
      * 获取文章
@@ -122,29 +124,21 @@ public class ArticleController {
 
     /**
      *
-     * @param aid
-     * @param atuid
-     * @param rid
-     * @param content
-     * @param session
-     * @return
      */
     @RequestMapping(value = "/review", method = POST)
     @ResponseBody
-    public HashMap<String, Object> review(@RequestParam("aid") Long aid,
-                                          @RequestParam("atuid") Long atuid,
-                                          @RequestParam("rid") Long rid,
-                                          @RequestParam("content") String content,
+    public HashMap<String, Object> review(ArticleReview review,
                                           HttpSession session){
 
         User user = (User) session.getAttribute("current_user");
         if(user != null) {
-            System.out.print("评论"+content);
+            review.setUid(user.getId());
+            articleReviewService.insert(review);
 
-            articleReviewService.insert(user.getId(), atuid, aid, rid, content);
-
+            final ArticleReview finalReview = articleReviewService.getById(review.getId());
             return new HashMap<String, Object>(){{
                 put("status", "success");
+                put("review", finalReview);
             }};
         }
         // Login
@@ -162,7 +156,7 @@ public class ArticleController {
                                            @RequestParam("size") int size){
 
 
-        HashMap<String, Object> res = articleReviewService.getById(aid, page, size);
+        HashMap<String, Object> res = articleReviewService.getByAid(aid, page, size);
 
         res.put("status", "success");
         return res;

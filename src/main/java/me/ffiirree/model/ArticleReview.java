@@ -17,7 +17,9 @@ import java.util.List;
 public class ArticleReview {
     private Long id;
     private Long aid;
+
     private Long uid;
+    private Long atuid;
     private Long rid;
 
     private User user;
@@ -27,4 +29,14 @@ public class ArticleReview {
 
     private String content;
     private String submitTime;
+
+    ArticleReview(Long id, Long uid, Long atuid, Long aid, Long rid, String content, String submitTime) {
+        this.id = id;
+        this.uid = uid;
+        this.atuid = atuid;
+        this.aid = aid;
+        this.rid = rid;
+        this.content = content;
+        this.submitTime = submitTime;
+    }
 }

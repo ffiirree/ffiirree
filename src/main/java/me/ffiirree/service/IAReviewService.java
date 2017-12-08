@@ -7,7 +7,13 @@ import java.util.List;
 
 public interface IAReviewService {
     List<ArticleReview> all();
-    HashMap<String, Object> getById(Long aid, int page, int size);
+    HashMap<String, Object> getByAid(Long aid, int page, int size);
 
-    void insert(Long uid, Long atuid, Long aid, Long rid, String content);
+    Long insert2(Long uid, Long atuid, Long aid, Long rid, String content);
+
+    Long insert(ArticleReview review);
+
+    List<ArticleReview> getReplies(Long aid, Long rid);
+
+    ArticleReview getById(Long id);
 }

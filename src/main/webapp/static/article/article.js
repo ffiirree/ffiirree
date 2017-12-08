@@ -8,6 +8,7 @@ $(document).ready(function () {
 
     let rid = 0;
     let atuid = 0;
+    let data_reviews = {};
 
     // 解析文章(Markdown)
     FIRE.article.parse({
@@ -18,7 +19,7 @@ $(document).ready(function () {
 
     //
     $('.page').css({
-        width: window.screen.width/2
+        width: window.screen.width / 2
     });
 
     // 评论框
@@ -37,17 +38,22 @@ $(document).ready(function () {
     $.post("/article/reviews", {aid: aid, page: 0, size: 20}, function (data) {
 
         if(data.status === "success"){
-            new Minx({
+            data_reviews = data;
+
+             new Minx({
                 $: '#reviews',
                 data: data,
                 methods: {
-                    reply(review) {
-                        console.log(review);
-                        rid = review[0].id;
-                        atuid = review[0].user.id;
+                    reply(args) {
+                        _review = args[0];
+                        _reply = args[1];
+                        _reply = _reply || _review;
 
-                        $("#at_name").html(review[0].user.username);
-                        $('#at_content').html(review[0].content);
+                        rid = _review.id;
+                        atuid = _reply.user.id;
+
+                        $("#at_name").html(_reply.user.username);
+                        $('#at_content').html(_reply.content);
 
                         $(".reply-background").show();
                     }
@@ -67,19 +73,10 @@ $(document).ready(function () {
                 }
                 else if(data.status === "success") {
                     $textarea.val("");
+                    data_reviews.reviews.push(data.review);
                 }
             });
         }
-    });
-
-    $('#submit').click(function () {
-        let username = $('#username').val();
-        let password = $('#password').val();
-
-        $.post('/user/login', {username:username, password: password}, function (data) {
-            if(data.status === "success")
-                $(".login").hide();
-        });
     });
 
     $("#reply").click(function () {
@@ -94,9 +91,26 @@ $(document).ready(function () {
                 else if(data.status === "success") {
                     $textarea.val("");
                     $('.reply-background').hide();
+
+                    data_reviews.reviews.forEach((item)=>{
+                        if(item.id === data.review.rid) {
+                            item.replies.push(data.review);
+                            return;
+                        }
+                    })
                 }
             });
         }
+    });
+
+    $('#submit').click(function () {
+        let username = $('#username').val();
+        let password = $('#password').val();
+
+        $.post('/user/login', {username:username, password: password}, function (data) {
+            if(data.status === "success")
+                $(".login").hide();
+        });
     });
 
 
@@ -119,6 +133,29 @@ FIRE.article = (function () {
      * @private
      */
     function __marked__() {
+        // For to do list.
+        let renderer = new marked.Renderer();
+        renderer.listitem = function(text) {
+            if (/^\s*\[[x ]\]\s*/.test(text)) {
+                text = text
+                    .replace(/^\s*\[ \]\s*/, '<i class="fa fa-circle-o"></i> ')
+                    .replace(/^\s*\[x\]\s*/, '<i class="fa fa-check-circle"></i> ');
+                return '<li style="list-style: none">' + text + '</li>';
+            } else {
+                return '<li>' + text + '</li>';
+            }
+        };
+        marked.setOptions({
+            renderer: renderer,
+            gfm: true,
+            tables: true,
+            breaks: true,
+            pedantic: false,
+            sanitize: false,
+            smartLists: true,
+            smartypants: false
+        });
+
         config.$preview.html(marked (config.$content.val()));
     }
 
@@ -134,7 +171,7 @@ FIRE.article = (function () {
             hljs.highlightBlock(block);
 
             // 代码行数
-            if($(this).hasClass('lang-flow') || $(this).hasClass('lang-seq'))
+            if($(this).hasClass('lang-flow') || $(this).hasClass('has-numbering'))
                 return;
 
             let lines = $(this).text().split('\n').length - 1;
@@ -146,9 +183,8 @@ FIRE.article = (function () {
                 .append($numbering);
 
             for(let i = 1; i <= lines; i++) {
-                $numbering.append($('<li/>').text(i));
+                $numbering.append($('<li/>').text(i + '.'));
             }
-
         });
 
         // 流程图
@@ -159,9 +195,6 @@ FIRE.article = (function () {
             $(this).remove();
             $('#diagram').attr('id','');
         });
-
-        // 序列图
-        $("pre .lang-seq").sequenceDiagram({theme: 'simple'});
 
         // 行内code样式
         $('code').each(function () {
@@ -196,7 +229,7 @@ FIRE.article = (function () {
             MathJax.Hub.Queue(
                 [__marked__],
                 [__highlight__],
-                [__hx__],
+                // [__hx__],
                 ["Typeset",MathJax.Hub,'article-preview']
             );
         }

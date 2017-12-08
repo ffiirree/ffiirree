@@ -1,33 +1,26 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: ice
-  Date: 2017/5/17
-  Time: 19:07
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
     <title>${article.title}</title>
     <link rel="shortcut icon" href="<c:url value="/static/image/icon/favicon.ico"/>" />
+
     <link type="text/css" rel="stylesheet" href="<c:url value="/static/default/default.css"/>">
-    <link type="text/css" rel="stylesheet" href="<c:url value="/static/editor/webmd.css"/>">
-    <link rel="stylesheet" href="<c:url value="/static/plugins/font-awesome/css/font-awesome.min.css"/>">
-    <link type="text/css" rel="stylesheet" href="<c:url value="/static/plugins/highlight/styles/agate.css"/>">
+    <link type="text/css" rel="stylesheet" href="<c:url value="/static/editor/mark.css"/>">
+    <link type="text/css" rel="stylesheet" href="<c:url value="/static/plugins/font-awesome/css/font-awesome.min.css"/>">
+    <link type="text/css" rel="stylesheet" href="<c:url value="/static/plugins/highlight/styles/default.css"/>">
     <link type="text/css" rel="stylesheet" href="<c:url value="/static/user/login.css"/>">
     <link type="text/css" rel="stylesheet" href="<c:url value="/static/article/article.css"/>">
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine|Lato|Consolas">
+
     <script type="text/javascript" rel="script" src="<c:url value="/static/plugins/jquery-3.2.1.min.js"/> "></script>
     <script type="text/javascript" rel="script" src="<c:url value="/static/plugins/autosize.min.js"/> "></script>
     <script type="text/javascript" rel="script" src="<c:url value="/static/plugins/marked.min.js"/> "></script>
     <script type="text/javascript" rel="script" src="<c:url value="/static/plugins/raphael.min.js"/> "></script>
     <script type="text/javascript" rel="script" src="<c:url value="/static/plugins/flowchart.min.js"/> "></script>
-    <script type="text/javascript" rel="script" src="<c:url value="/static/plugins/webfont.js"/> "></script>
-    <script type="text/javascript" rel="script" src="<c:url value="/static/plugins/snap.svg-min.js"/> "></script>
-    <script type="text/javascript" rel="script" src="<c:url value="/static/plugins/underscore-min.js"/> "></script>
-    <script type="text/javascript" rel="script" src="<c:url value="/static/plugins/sequence-diagram-min.js"/> "></script>
     <script type="text/javascript" rel="script" src="<c:url value="/static/plugins/highlight/highlight.pack.js"/> "></script>
     <script>hljs.initHighlightingOnLoad();</script>
+
     <!--MathJax-->
     <script type="text/x-mathjax-config">
         MathJax.Hub.Config({
@@ -111,16 +104,16 @@
                     </div>
 
                     <div class = "replies">
-                        <div x-for="reply:review.replies">
-                            <div class="secondary-review" x-attr:id="'reply_'+ reply.id ">
+                        <div x-for="_reply:review.replies">
+                            <div class="secondary-review" x-attr:id="'reply_'+ _reply.id ">
                                 <div class="reply-box">
-                                    <span>{{ reply.user.username }}</span>
-                                    <span>: @{{ reply.atu.username }}</span>
-                                    <span class="reply-content"> : {{ reply.content }}</span>
+                                    <span>{{ _reply.user.username }}</span>
+                                    <span>: @{{ _reply.atu.username }}</span>
+                                    <span class="reply-content"> : {{ _reply.content }}</span>
                                     <div class="secondary-operation">
                                         <ul class="ul-left">
-                                            <li>{{ reply.submitTime }}</li>
-                                            <li x-on:click="reply(review)">回复</li>
+                                            <li>{{ _reply.submitTime }}</li>
+                                            <li x-on:click="reply(review, _reply)">回复</li>
                                         </ul>
                                     </div>
                                 </div>
