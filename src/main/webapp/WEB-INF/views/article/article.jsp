@@ -12,7 +12,7 @@
     <title>${article.title}</title>
     <link rel="shortcut icon" href="<c:url value="/static/image/icon/favicon.ico"/>" />
     <link type="text/css" rel="stylesheet" href="<c:url value="/static/default/default.css"/>">
-    <link type="text/css" rel="stylesheet" href="<c:url value="/static/editor/style/mark.css"/>">
+    <link type="text/css" rel="stylesheet" href="<c:url value="/static/editor/webmd.css"/>">
     <link rel="stylesheet" href="<c:url value="/static/plugins/font-awesome/css/font-awesome.min.css"/>">
     <link type="text/css" rel="stylesheet" href="<c:url value="/static/plugins/highlight/styles/agate.css"/>">
     <link type="text/css" rel="stylesheet" href="<c:url value="/static/user/login.css"/>">
@@ -28,6 +28,7 @@
     <script type="text/javascript" rel="script" src="<c:url value="/static/plugins/sequence-diagram-min.js"/> "></script>
     <script type="text/javascript" rel="script" src="<c:url value="/static/plugins/highlight/highlight.pack.js"/> "></script>
     <script>hljs.initHighlightingOnLoad();</script>
+    <!--MathJax-->
     <script type="text/x-mathjax-config">
         MathJax.Hub.Config({
             extensions: ["tex2jax.js"],
@@ -40,7 +41,7 @@
             "HTML-CSS": { availableFonts: ["TeX"] }
         });
     </script>
-    <script type="text/javascript" src="/static/plugins/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML'></script>
     <script type="text/javascript" rel="script" src="<c:url value="/static/plugins/msgbox.js"/>"></script>
     <script>let aid = ${article.id};</script>
     <script type="text/javascript" rel="script" src="<c:url value="/static/plugins/template.js"/> "></script>

@@ -6,7 +6,7 @@ $(document).ready(function () {
 
     EDITOR.init();
 
-    $('#zmd-submit').click(function () {
+    $('#article-submit').click(function () {
         EDITOR.showTopicWindow();
     });
 
@@ -26,6 +26,7 @@ let EDITOR = (function () {
 
     let article = {};
     let topics = [];
+    let editor = null;
 
 
     function __submit__() {
@@ -40,6 +41,13 @@ let EDITOR = (function () {
     return {
 
         init:function () {
+            editor = new Editor({
+                selector: '#editor',
+                mode: 'normal-mode',
+                menu: true,
+                upload: true
+            });
+
             $.post('/article/categories', null, function (data) {
                 if(data.status === 'success'){
                     data.categories.forEach(function (item) {
@@ -71,8 +79,8 @@ let EDITOR = (function () {
         },
 
         showTopicWindow:function () {
-            article.title = $('#zmd-title-input').val();
-            article.content = $('#zmd-textarea').val();
+            article.title = $('#title-input').val();
+            article.content = editor.codemirror.getValue();
 
             if(article.title === "") {
                 messageBox('O_O', "文章标题不能为空!");

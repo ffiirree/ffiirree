@@ -10,11 +10,13 @@
     }
 }
 
+@include body('.body');
+
 
 /*///////////////////////// -- button -- ///////////////////////*/
-@mixin  button($selector, $width: auto,  $height:auto, $br: 5px, $bgc: #00AAAA, $hbgc: #00b0e8) {
+@mixin  button($selector, $width: auto,  $height:auto, $br: 5px, $bgc: inherit, $hbgc: #00b0e8) {
     #{$selector} {
-        border: none;
+        border: 1px solid #00b0e8;
         outline: none;
 
         height: $height;
@@ -22,14 +24,18 @@
         border-radius: $br;
 
         background-color: $bgc;
-        color: white;
+        color: $hbgc;
     }
 
     #{$selector}:hover {
+        color: #ffffff;
         background-color: $hbgc;
         cursor: pointer;
     }
 }
+
+// 默认的按钮，#00AAAA->#00b0e8
+@include button('.button');
 
 
 /*///////////////////////// -- ul -- ///////////////////////*/
@@ -51,6 +57,12 @@
     }
 }
 
+@include ul('.menu');
+@include ul('.float-ul');
+@include ul('.float-ul-left', left);
+@include ul('.float-ul-right', right);
+
+
 /*///////////////////////// -- hr -- ///////////////////////*/
 .hr {
     border: none;
@@ -70,6 +82,9 @@
     }
 }
 
+@include a('.a');
+
+
 /*///////////////////////// -- input -- ///////////////////////*/
 @mixin input($selector) {
     #{$selector} {
@@ -81,6 +96,9 @@
         padding: 0;
     }
 }
+
+@include input('.input');
+
 
 /*///////////////////////// -- textarea -- ///////////////////////*/
 @mixin textarea($selector) {
@@ -97,64 +115,29 @@
     }
 }
 
+@include textarea('.textarea');
+
+
 /*///////////////////////// -- scrollbar -- ///////////////////////*/
-@mixin scrollbar($selector, $width: 10px, $bgc: #cccccc, $hbgc: #aaaaaa) {
+@mixin scrollbar(
+    $selector,
+    $width: 10px,
+    $color: #bcbcbc, $hover-color:  #aaa,
+    $bgc: #ddd) {
 
     #{$selector}::-webkit-scrollbar {
-        width: 12px;
+        width: 10px;
+        background-color: $bgc;
     }
 
     #{$selector}::-webkit-scrollbar-thumb {
         border-radius: 4px;
-        background: $bgc;
+        background:$color;
     }
 
     #{$selector}::-webkit-scrollbar-thumb:hover {
-        background: $hbgc;
+        background: $hover-color;
     }
 }
 
-/*///////////////////////// -- Loading -- ///////////////////////*/
-.spinner {
-    width: 60px;
-    height: 60px;
-
-    position: fixed;
-    left: 50%;
-    top: 40%;
-    margin-left: -30px;
-}
-
-.double-bounce1, .double-bounce2 {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    background-color: #00b0e8;
-    opacity: 0.6;
-    position: absolute;
-    top: 0;
-    left: 0;
-
-    -webkit-animation: bounce 2.0s infinite ease-in-out;
-    animation: bounce 2.0s infinite ease-in-out;
-}
-
-.double-bounce2 {
-    -webkit-animation-delay: -1.0s;
-    animation-delay: -1.0s;
-}
-
-@-webkit-keyframes bounce {
-    0%, 100% { -webkit-transform: scale(0.0) }
-    50% { -webkit-transform: scale(1.0) }
-}
-
-@keyframes bounce {
-    0%, 100% {
-        transform: scale(0.0);
-        -webkit-transform: scale(0.0);
-    } 50% {
-          transform: scale(1.0);
-          -webkit-transform: scale(1.0);
-      }
-}
+@include scrollbar('.scrollbar');
