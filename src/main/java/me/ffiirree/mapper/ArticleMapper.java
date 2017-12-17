@@ -12,33 +12,66 @@ import java.util.List;
 @Component
 public interface ArticleMapper {
 
+    // 插入文章
     @Insert({"insert into articles(uid, cid, title, content) values(#{uid}, #{cid}, #{title}, #{content})"})
     @Options(useGeneratedKeys = true, keyProperty = "id")
     void insert(Article article);
 
+    @Update("update articles set cid = #{cid}, title=#{title}, content=#{content}" +
+            " where id=#{id}")
+    void update(Article article);
+
+    @Delete("delete from articles where id=#{id}")
+    void delete(@Param("id")Long id);
+
+    // 通过ID获取文章
     @Select({"select users.avatar, users.username, articles.* from users, articles where articles.id=#{id} and users.id=articles.uid"})
     HashMap<String, Object> getArticle(@Param("id") Long id);
 
-    @Select({ "select articles.*, categories.name as category from articles, categories" +
-            " where articles.cid=categories.id" +
-            " ORDER BY submitTime DESC limit #{start}, #{size}" })
+    @Select("select * from articles where id=#{id}")
     @Results({
             @Result(property = "id", column = "id"),
+            @Result(property = "uid", column = "uid"),
+            @Result(property = "cid", column = "cid"),
             @Result(property = "reviewNumber", column = "id",
                     one = @One(select = "me.ffiirree.mapper.ArticleReviewMapper.count")),
+            @Result(property = "user", column = "uid",
+                    one = @One(select = "me.ffiirree.mapper.UserMapper.getUserById")),
+            @Result(property = "category", column = "cid",
+                    one = @One(select = "me.ffiirree.mapper.CategoryMapper.getCategoryById")),
+            @Result(property = "topics", javaType = List.class, column = "id",
+                    many = @Many(select = "me.ffiirree.mapper.ATMapper.all"))
+    })
+    Article getArticleById(@Param("id") Long id);
+
+    @Select({ "select * from articles ORDER BY submitTime DESC limit #{start}, #{size}" })
+    @Results({
+            @Result(property = "id", column = "id"),
+            @Result(property = "uid", column = "uid"),
+            @Result(property = "cid", column = "cid"),
+            @Result(property = "reviewNumber", column = "id",
+                    one = @One(select = "me.ffiirree.mapper.ArticleReviewMapper.count")),
+            @Result(property = "user", column = "uid",
+                    one = @One(select = "me.ffiirree.mapper.UserMapper.getUserById")),
+            @Result(property = "category", column = "cid",
+                    one = @One(select = "me.ffiirree.mapper.CategoryMapper.getCategoryById")),
             @Result(property = "topics", javaType = List.class, column = "id",
                     many = @Many(select = "me.ffiirree.mapper.ATMapper.all"))
     })
     List<Article> all(@Param("start") int start, @Param("size")int size);
 
 
-    @Select({ "select articles.*, categories.name as category from articles, categories" +
-            " where articles.cid=categories.id and categories.id=#{cid}" +
-            " ORDER BY submitTime DESC limit #{start}, #{size}" })
+    @Select({ "select * from articles where cid=#{cid} ORDER BY submitTime DESC limit #{start}, #{size}" })
     @Results({
             @Result(property = "id", column = "id"),
+            @Result(property = "uid", column = "uid"),
+            @Result(property = "cid", column = "cid"),
             @Result(property = "reviewNumber", column = "id",
                     one = @One(select = "me.ffiirree.mapper.ArticleReviewMapper.count")),
+            @Result(property = "user", column = "uid",
+                    one = @One(select = "me.ffiirree.mapper.UserMapper.getUserById")),
+            @Result(property = "category", column = "cid",
+                    one = @One(select = "me.ffiirree.mapper.CategoryMapper.getCategoryById")),
             @Result(property = "topics", javaType = List.class, column = "id",
                     many = @Many(select = "me.ffiirree.mapper.ATMapper.all"))
     })

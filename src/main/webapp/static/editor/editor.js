@@ -27,14 +27,66 @@ let EDITOR = (function () {
     let article = {};
     let topics = [];
     let editor = null;
+    let mode = "edit";
 
 
+    // 提交/更新文章
     function __submit__() {
         let cid = $('#categories').val();
-        console.log(cid);
-        $.post('/article/submit', { cid: cid, title:article.title, content:article.content, topics: topics }, function (data) {
-            if(data.status === "success")
-                location.href = "/home";
+        if(mode === "edit") {
+            $.post('/article/submit', { cid: cid, title:article.title, content:article.content, topics: topics }, function (data) {
+                if(data.status === "success")
+                    location.href = "/article/" + data.articleId;
+            });
+        }
+        else {
+            $.post('/article/update', { id: article.id, cid: cid, title:article.title, content:article.content, topics: topics }, function (data) {
+                if(data.status === "success")
+                    location.href = "/article/" + data.articleId;
+            });
+        }
+    }
+
+    //
+    function __setCategories__() {
+
+        $.post('/article/categories', null, function (data) {
+            if(data.status === 'success') {
+                new Minx({
+                    $:"#categories",
+                    data: {
+                        categories: data.categories
+                    }
+                });
+            }
+        });
+    }
+
+
+    function __setTopics__() {
+
+        new Minx({
+            $:"#topic-list",
+            data: {
+              topics: topics
+            },
+            methods: {
+                remove: function(args) {
+                    topics.splice(args[0], 1);
+                }
+            }
+        });
+
+
+        $('#topics').keyup(function (event) {
+            if(event.keyCode === 13) {
+
+                let topic = $(this).val();
+                if(topic.replace(/[\s]+/g, '') && topics.length < 5) {
+                    $(this).val('');
+                    topics.push(topic);
+                }
+            }
         });
     }
 
@@ -48,33 +100,31 @@ let EDITOR = (function () {
                 upload: true
             });
 
-            $.post('/article/categories', null, function (data) {
-                if(data.status === 'success'){
-                    data.categories.forEach(function (item) {
-                        let $option = $('<option value="'+item.id+'">'+item.name+'</option>');
-                        $option.appendTo('#categories');
+            // 获取文章分类列表
+            __setCategories__();
+
+            // 添加topic
+            __setTopics__();
+
+            //////////////////////////////////////////////////////////////////////////
+            // Modify
+            if(Router.hash.get("type") === "modify" && Router.hash.get("id")) {
+                mode = "modify";
+                $.post('/article/' + Router.hash.get("id"), null, function (data) {
+                    article = data;
+                    // 获取文章并设置标题和内容
+                    $('#title-input').val(data.title);
+                    editor.codemirror.setValue(data.content);
+
+                    // 设置该文章的分类
+                    $('#categories').val(article.cid);
+
+                    // 设置改文章的topics
+                    article.topics && article.topics.forEach(item=>{
+                        topics.push(item.name);
                     });
-                }
-            });
-
-            $('#topics').keyup(function (event) {
-                if(event.keyCode === 13){
-
-                    let topic = $(this).val();
-                    if(topic !== "" && topics.length < 5){
-                        $(this).val('');
-
-                        topics[topics.length] = topic;
-
-                        let $topic = $('<span class="topic-cell"><span>'+topic+'</span><span class="fa fa-close"></span></span>');
-                        $topic.find('.fa-close').click(function () {
-                            $topic.remove();
-                        });
-                        $('.add-topics').append($topic);
-                    }
-                }
-            });
-
+                });
+            }
         },
 
         showTopicWindow:function () {

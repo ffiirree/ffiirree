@@ -16,4 +16,7 @@ public interface CategoryMapper {
                     many = @Many(select = "me.ffiirree.mapper.ArticleMapper.count"))
     })
     List<Category> all();
+
+    @Select("select * from categories where id = #{id}")
+    Category getCategoryById(@Param("id") Long id);
 }

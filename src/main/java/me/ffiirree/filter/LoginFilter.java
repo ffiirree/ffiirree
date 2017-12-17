@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebFilter(urlPatterns={"/article/edit", "/article/submit"})
+@WebFilter(urlPatterns={"/article/edit", "/article/submit", "/article/manager"})
 public class LoginFilter extends HttpServlet implements Filter {
 
     @Override
@@ -25,7 +25,7 @@ public class LoginFilter extends HttpServlet implements Filter {
             filterChain.doFilter(servletRequest, servletResponse);
         }
         else {
-            httpServletResponse.sendRedirect("/user/login");
+            httpServletResponse.sendRedirect("/user/login#!/url=" + url);
         }
     }
 }

@@ -28,8 +28,23 @@ public class ArticleServiceImpl implements IArticleService {
     }
 
     @Override
+    public void updated(Article article) {
+        articleMapper.update(article);
+    }
+
+    @Override
+    public void delete(Long id) {
+        articleMapper.delete(id);
+    }
+
+    @Override
     public HashMap<String, Object> getArticle(Long id) {
         return articleMapper.getArticle(id);
+    }
+
+    @Override
+    public Article getArticleById(Long id) {
+        return articleMapper.getArticleById(id);
     }
 
     @Override

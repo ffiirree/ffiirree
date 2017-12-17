@@ -1,6 +1,7 @@
 @charset "UTF-8";
 body {
-  background-color: #eeeeee; }
+  background-color: #f3f3f3;
+  font-family: Consolas, 'Lato', "PingFang SC", "Microsoft YaHei", sans-serif; }
 
 .primary-nav {
   position: fixed;

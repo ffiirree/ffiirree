@@ -15,6 +15,11 @@
     <link type="text/css" rel="stylesheet" href="<c:url value="/static/user/login.css"/>">
     <script type="text/javascript" rel="script" src="<c:url value="/static/plugins/jquery-3.2.1.min.js"/> "></script>
     <script type="text/javascript" rel="script" src="<c:url value="/static/plugins/msgbox.js"/> "></script>
+    <script type="text/javascript" rel="script" src="<c:url value="/static/plugins/minx/watcher.js"/>"></script>
+    <script type="text/javascript" rel="script" src="<c:url value="/static/plugins/minx/observer.js"/>"></script>
+    <script type="text/javascript" rel="script" src="<c:url value="/static/plugins/minx/compile.js"/>"></script>
+    <script type="text/javascript" rel="script" src="<c:url value="/static/plugins/minx/router.js"/>"></script>
+    <script type="text/javascript" rel="script" src="<c:url value="/static/plugins/minx/minx.js"/>"></script>
     <script type="text/javascript" rel="script" src="<c:url value="/static/user/login.js"/> "></script>
 </head>
 <body>

@@ -3,6 +3,7 @@ package me.ffiirree.controller;
 import me.ffiirree.mapper.ATMapper;
 import me.ffiirree.mapper.CategoryMapper;
 import me.ffiirree.mapper.TopicMapper;
+import me.ffiirree.model.Article;
 import me.ffiirree.model.ArticleReview;
 import me.ffiirree.model.Topic;
 import me.ffiirree.model.User;
@@ -67,6 +68,14 @@ public class ArticleController {
         return "article/editor";
     }
 
+    /**
+     * 文章的管理界面
+     */
+    @RequestMapping(value = "/manager", method = GET)
+    public String manager() {
+        return "article/manager";
+    }
+
 
     /**
      * 文章显示界面
@@ -74,22 +83,30 @@ public class ArticleController {
     @RequestMapping(value = "/{id}", method = GET)
     public String article(@PathVariable("id") Long id, Model model, HttpServletRequest request) throws ParseException {
 
-        HashMap<String, Object> article = articleService.getArticle(id);
+        Article article = articleService.getArticleById(id);
         model.addAttribute("article", article);
 
+        // 获取用户IP地址
         String ip="";
-
         if (request != null) {
             ip = request.getHeader("X-FORWARDED-FOR");
             if (ip == null || "".equals(ip)) {
                 ip = request.getRemoteAddr();
             }
         }
-
-
+        // 记录阅读记录
         articleService.read(id, ip);
 
         return "article/article";
+    }
+
+    /**
+     * 文章显示界面
+     */
+    @RequestMapping(value = "/{id}", method = POST)
+    @ResponseBody
+    public Article article(@PathVariable("id") Long id) {
+        return articleService.getArticleById(id);
     }
 
     /**
@@ -118,6 +135,51 @@ public class ArticleController {
         return new HashMap<String, Object>(){{
             put("status", "success");
             put("articleId", aid);
+        }};
+    }
+
+    /**
+     * 提交文章
+     */
+    @RequestMapping(value = "/update", method = POST)
+    @ResponseBody
+    public HashMap<String, Object> update(@RequestParam("id") final Long id,
+                                          @RequestParam("title")String title,
+                                          @RequestParam("content")String content,
+                                          @RequestParam("cid")Long cid,
+                                          @RequestParam("topics[]")List<String> topics,
+                                          @SessionAttribute("current_user")User user) {
+
+
+        final Article article = new Article(user.getId(), cid, title, content);
+        article.setId(id);
+        articleService.updated(article);
+
+        // 删除文章原先的topic
+        atsService.deleteByArticleId(id);
+
+        for(String topicName : topics) {
+            Topic topic = topicService.selectByName(topicName);
+
+            if(topic == null) {
+                topic = new Topic(topicName);
+                topicService.insert(topic);
+            }
+            atsService.insert(id, topic.getId());
+        }
+
+        return new HashMap<String, Object>(){{
+            put("status", "success");
+            put("articleId", id);
+        }};
+    }
+
+    @RequestMapping(value = "/delete", method = POST)
+    @ResponseBody
+    public HashMap<String, Object> delete(@RequestParam("id") Long id) {
+        articleService.delete(id);
+        return new HashMap<String, Object>(){{
+            put("status","success");
         }};
     }
 

@@ -55,7 +55,7 @@
            ${article.title}
         </div>
         <div class="article-details">
-            阅读(${article.readNumber}) UPDATE ${article.editTime}
+            READ (${article.readNumber}) &nbsp; UPDATE ${article.editTime}
         </div>
         <div id="article-preview" class="content mark">
 

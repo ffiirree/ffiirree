@@ -19,18 +19,20 @@ public class Article {
     private Long uid;
     private Long cid;
 
+    private User user;          // ext
+    private Category category;  // ext
+
     private String title;
     private String content;
     private Long readNumber;
     private Long reviewNumber;
 
-    private List<Topic> topics;
-    private String category;
+    private List<Topic> topics; // ext
 
     private String submitTime;
     private String editTime;
 
-    public Article(Long uid, Long cid, String title, String content){
+    public Article(Long uid, Long cid, String title, String content) {
         this.uid = uid;
         this.cid = cid;
         this.title = title;

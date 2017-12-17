@@ -44,6 +44,11 @@
     <script type="text/javascript" rel="script" src="<c:url value="/static/plugins/msgbox.js"/>"></script>
     <link rel="stylesheet" href="<c:url value="/static/editor/editor.css"/>">
     <script type="text/javascript" rel="script" src="<c:url value="/static/editor/editor.js"/>"></script>
+    <script type="text/javascript" rel="script" src="<c:url value="/static/plugins/minx/watcher.js"/>"></script>
+    <script type="text/javascript" rel="script" src="<c:url value="/static/plugins/minx/observer.js"/>"></script>
+    <script type="text/javascript" rel="script" src="<c:url value="/static/plugins/minx/compile.js"/>"></script>
+    <script type="text/javascript" rel="script" src="<c:url value="/static/plugins/minx/router.js"/>"></script>
+    <script type="text/javascript" rel="script" src="<c:url value="/static/plugins/minx/minx.js"/>"></script>
 </head>
 <body>
 <div>
@@ -64,13 +69,21 @@
 
         <div class="input-bar">
             <div>个人集合</div>
-            <select title="" id="categories"></select>
+            <select title="" id="categories">
+                <option x-for="category:categories" x-attr:value="category.id">{{ category.name }}</option>
+            </select>
         </div>
 
         <div class="input-bar">
             <div>文章标签</div>
             <div class="topics-bar">
-                <div class="add-topics"></div>
+                <%--标签显示--%>
+                <div class="add-topics" id="topic-list">
+                    <span x-for="(topic, index):topics" class="topic-cell">
+                        <span>{{ topic }}</span><span class="fa fa-close" x-on:click="remove(index)"></span>
+                    </span>
+                </div>
+                <%--标签输入--%>
                 <input id="topics" name="topics" title="" placeholder="添加标签">
             </div>
         </div>

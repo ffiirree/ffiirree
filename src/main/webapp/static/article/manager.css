@@ -1,0 +1,164 @@
+body {
+  margin: 0;
+  padding: 0;
+  background: #f7f8fa; }
+
+header {
+  position: fixed;
+  top: 0; }
+
+.page {
+  margin: 75px auto auto;
+  width: 1000px;
+  min-height: 100%; }
+  .page .header {
+    border-bottom: 1px solid #3a90f2;
+    height: 45px;
+    overflow: visible !important;
+    display: block; }
+    .page .header li {
+      background-color: #f3f3f3;
+      text-align: center;
+      line-height: 46px;
+      width: 125px;
+      height: 46px;
+      box-sizing: border-box;
+      border-top: 3px solid wheat;
+      border-bottom: 1px solid #3a90f2; }
+    .page .header .selected {
+      color: #3a90f2;
+      background-color: #f7f8fa;
+      border: 1px solid #3a90f2;
+      border-top-width: 3px;
+      border-bottom-color: #f7f8fa; }
+
+.section .article,
+.section .category {
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-flow: row;
+  height: 50px;
+  line-height: 50px;
+  padding: 0 25px; }
+  .section .article .article-info, .section .article .category-info,
+  .section .category .article-info,
+  .section .category .category-info {
+    flex: 1 1 auto; }
+    .section .article .article-info .title, .section .article .category-info .title,
+    .section .category .article-info .title,
+    .section .category .category-info .title {
+      color: #333333; }
+    .section .article .article-info .title:hover, .section .article .category-info .title:hover,
+    .section .category .article-info .title:hover,
+    .section .category .category-info .title:hover {
+      text-decoration-line: underline; }
+    .section .article .article-info .attach, .section .article .category-info .attach,
+    .section .category .article-info .attach,
+    .section .category .category-info .attach {
+      color: #666666;
+      font-size: 14px; }
+  .section .article .operation,
+  .section .category .operation {
+    flex: 0 0 150px; }
+    .section .article .operation li,
+    .section .category .operation li {
+      width: 50px;
+      height: 25px;
+      margin: 10px;
+      line-height: 25px;
+      text-align: center;
+      font-size: 13px;
+      border: solid 1px #3a90f2;
+      border-radius: 5px;
+      color: #3a90f2; }
+      .section .article .operation li a,
+      .section .category .operation li a {
+        text-decoration: none;
+        color: inherit; }
+    .section .article .operation li:hover,
+    .section .category .operation li:hover {
+      background-color: #3a90f2;
+      color: white; }
+    .section .article .operation .delete,
+    .section .category .operation .delete {
+      border: solid 1px #ff6666;
+      color: #ff6666; }
+    .section .article .operation .delete:hover,
+    .section .category .operation .delete:hover {
+      background-color: #ff6666; }
+.section .article:nth-child(even) {
+  background-color: #f5f5f5; }
+
+.pagination {
+  text-align: center; }
+  .pagination ul {
+    display: inline-block;
+    margin: 20px auto; }
+    .pagination ul li {
+      margin: 0 5px;
+      border: 1px solid #e7eaf1;
+      border-radius: 2px;
+      box-shadow: 0 1px 3px rgba(0, 37, 55, 0.05);
+      height: 30px;
+      line-height: 30px;
+      width: 40px;
+      background-color: white;
+      text-align: center; }
+      .pagination ul li i {
+        line-height: 30px;
+        font-size: 20px; }
+
+.delete-window-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5); }
+  .delete-window-background .delete-window {
+    background-color: white;
+    width: 450px;
+    margin: 200px auto auto; }
+    .delete-window-background .delete-window .title {
+      background-color: #F0F0F0;
+      height: 35px;
+      text-align: center;
+      font-size: 17px;
+      line-height: 35px; }
+    .delete-window-background .delete-window .content {
+      padding: 10px 25px;
+      margin-bottom: 20px; }
+      .delete-window-background .delete-window .content #article-title {
+        color: #3a90f2;
+        font-size: 15px;
+        cursor: pointer; }
+    .delete-window-background .delete-window .operation {
+      height: 26px;
+      padding: 10px 25px; }
+      .delete-window-background .delete-window .operation div {
+        float: right;
+        height: 24px;
+        line-height: 24px;
+        width: 65px;
+        display: inline-block;
+        font-size: 14px;
+        border-radius: 5px;
+        text-align: center;
+        margin-left: 15px; }
+      .delete-window-background .delete-window .operation #delete-cancel {
+        border: solid 1px #3a90f2;
+        color: #3a90f2; }
+      .delete-window-background .delete-window .operation #delete-cancel:hover {
+        cursor: pointer;
+        background-color: #3a90f2;
+        color: white; }
+      .delete-window-background .delete-window .operation #delete-do {
+        border: solid 1px #ff6666;
+        color: #ff6666; }
+      .delete-window-background .delete-window .operation #delete-do:hover {
+        cursor: pointer;
+        background-color: #ff6666;
+        color: white; }
+
+/*# sourceMappingURL=manager.css.map */
