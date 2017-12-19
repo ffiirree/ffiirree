@@ -56,8 +56,12 @@ select * from article_read_number where aid=3 and ip='0:0:0:0:0:0:0:1' order by 
 # 文章分类
 create table categories(
 	id bigint auto_increment primary key,
+    position bigint unique not null,
+    parent_id bigint not null default 0,
     name text collate utf8_general_ci not null,
-    submitTime timestamp default current_timestamp
+    submitTime timestamp default current_timestamp,
+    
+    foreign key(parent_id) references categories(id) on delete cascade
 );
 select * from categories;
 

@@ -67,9 +67,14 @@
     <%-- 右侧页面，显示文章分类及其他信息 --%>
     <div class="right">
         <div id="categories">
-            <div x-for="c:categories">
-                <div x-attr:class="c.id" x-on:click="category(c.id)">
+            <div x-for="c:categories" class="top-categories">
+                <div class="content" x-attr:class="c.id" x-on:click="category(c.id)">
                     <span>{{ c.name }}</span><span>({{ c.count }})</span>
+                </div>
+                <div x-for="subc:c.child" class="sub-categories" style="display: none;">
+                    <div x-attr:class="subc.id" x-on:click="category(subc.id)" x-on:click="sub_category(subc.id)">
+                        <span>{{ subc.name }}</span><span>({{ subc.count }})</span>
+                    </div>
                 </div>
             </div>
         </div>

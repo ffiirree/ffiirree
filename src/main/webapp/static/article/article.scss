@@ -15,38 +15,35 @@ body {
     width: 960px !important;
     margin: 75px auto 25px;
     padding: 50px 0;
+    box-sizing: border-box;
 
     box-shadow: 0 0 15px 5px #aaaaaa;
     background-color: white;
 }
 
 .article {
+    .title {
+        text-align: center;
 
+        font-size: 27px;
+        border-left: 5px #00b0e8 solid;
+        border-right:5px #00b0e8 solid;
+    }
+    .title:hover {
+        color: #00AAAA;
+    }
+
+    .article-details {
+        margin: 15px auto;
+        text-align: center;
+
+        font-size: 13px;
+    }
+
+    .content {
+        margin: 25px 75px;
+    }
 }
-
-.article .title {
-    text-align: center;
-
-    font-size: 27px;
-    border-left: 5px #00b0e8 solid;
-    border-right:5px #00b0e8 solid;
-}
-
-.article .article-details {
-    margin: 15px auto;
-    text-align: center;
-
-    font-size: 13px;
-}
-
-.article .title:hover {
-    color: #00AAAA;
-}
-
-.article .content {
-    margin: 25px 75px;
-}
-
 /*///////////////////////// -- 版权 -- ///////////////////////*/
 .article-copyright {
     width: 100%;

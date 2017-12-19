@@ -183,7 +183,6 @@ public class ArticleController {
         }};
     }
 
-
     /**
      *
      */
@@ -250,16 +249,6 @@ public class ArticleController {
         return new HashMap<String, Object>(){{
             put("status", "success");
             put("url", url);
-        }};
-    }
-
-
-    @RequestMapping(value = "/categories", method = POST)
-    @ResponseBody
-    public HashMap<String, Object> categories() {
-        return new HashMap<String, Object>(){{
-            put("status", "success");
-            put("categories", categoryService.all());
         }};
     }
 }

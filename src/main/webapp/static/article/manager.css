@@ -87,8 +87,19 @@ header {
     .section .article .operation .delete:hover,
     .section .category .operation .delete:hover {
       background-color: #ff6666; }
-.section .article:nth-child(even) {
+.section .article:nth-child(even),
+.section .category:nth-child(even) {
   background-color: #f5f5f5; }
+
+#categories-list .category-info {
+  display: flex;
+  flex-flow: row; }
+  #categories-list .category-info .name {
+    flex: 0 0 25%; }
+  #categories-list .category-info .parent {
+    color: #333333;
+    font-size: 15px;
+    flex: 0 0 75%; }
 
 .pagination {
   text-align: center; }
@@ -109,34 +120,48 @@ header {
         line-height: 30px;
         font-size: 20px; }
 
-.delete-window-background {
+.delete-window-background,
+.update-category-background,
+.insert-category-background {
   position: fixed;
   top: 0;
   left: 0;
   height: 100%;
   width: 100%;
   background-color: rgba(0, 0, 0, 0.5); }
-  .delete-window-background .delete-window {
+  .delete-window-background .window,
+  .update-category-background .window,
+  .insert-category-background .window {
     background-color: white;
     width: 450px;
     margin: 200px auto auto; }
-    .delete-window-background .delete-window .title {
+    .delete-window-background .window .title,
+    .update-category-background .window .title,
+    .insert-category-background .window .title {
       background-color: #F0F0F0;
       height: 35px;
       text-align: center;
       font-size: 17px;
       line-height: 35px; }
-    .delete-window-background .delete-window .content {
+    .delete-window-background .window .content,
+    .update-category-background .window .content,
+    .insert-category-background .window .content {
       padding: 10px 25px;
       margin-bottom: 20px; }
-      .delete-window-background .delete-window .content #article-title {
+      .delete-window-background .window .content #delete-name,
+      .update-category-background .window .content #delete-name,
+      .insert-category-background .window .content #delete-name {
         color: #3a90f2;
         font-size: 15px;
         cursor: pointer; }
-    .delete-window-background .delete-window .operation {
+    .delete-window-background .window .operation,
+    .update-category-background .window .operation,
+    .insert-category-background .window .operation {
       height: 26px;
       padding: 10px 25px; }
-      .delete-window-background .delete-window .operation div {
+      .delete-window-background .window .operation div,
+      .update-category-background .window .operation div,
+      .insert-category-background .window .operation div {
         float: right;
         height: 24px;
         line-height: 24px;
@@ -146,19 +171,57 @@ header {
         border-radius: 5px;
         text-align: center;
         margin-left: 15px; }
-      .delete-window-background .delete-window .operation #delete-cancel {
+      .delete-window-background .window .operation .cancel,
+      .update-category-background .window .operation .cancel,
+      .insert-category-background .window .operation .cancel {
         border: solid 1px #3a90f2;
         color: #3a90f2; }
-      .delete-window-background .delete-window .operation #delete-cancel:hover {
+      .delete-window-background .window .operation .cancel:hover,
+      .update-category-background .window .operation .cancel:hover,
+      .insert-category-background .window .operation .cancel:hover {
         cursor: pointer;
         background-color: #3a90f2;
         color: white; }
-      .delete-window-background .delete-window .operation #delete-do {
+      .delete-window-background .window .operation .delete, .delete-window-background .window .operation .insert, .delete-window-background .window .operation .update,
+      .update-category-background .window .operation .delete,
+      .update-category-background .window .operation .insert,
+      .update-category-background .window .operation .update,
+      .insert-category-background .window .operation .delete,
+      .insert-category-background .window .operation .insert,
+      .insert-category-background .window .operation .update {
         border: solid 1px #ff6666;
         color: #ff6666; }
-      .delete-window-background .delete-window .operation #delete-do:hover {
+      .delete-window-background .window .operation .delete:hover, .delete-window-background .window .operation .insert:hover, .delete-window-background .window .operation .update:hover,
+      .update-category-background .window .operation .delete:hover,
+      .update-category-background .window .operation .insert:hover,
+      .update-category-background .window .operation .update:hover,
+      .insert-category-background .window .operation .delete:hover,
+      .insert-category-background .window .operation .insert:hover,
+      .insert-category-background .window .operation .update:hover {
         cursor: pointer;
         background-color: #ff6666;
         color: white; }
+
+#insert-category-window .input-name, #insert-category-window .input-parent,
+#update-category-window .input-name,
+#update-category-window .input-parent {
+  margin: 10px 25px;
+  height: 30px;
+  width: 400px;
+  display: flex;
+  flex-flow: row;
+  line-height: 30px; }
+  #insert-category-window .input-name > div, #insert-category-window .input-parent > div,
+  #update-category-window .input-name > div,
+  #update-category-window .input-parent > div {
+    font-size: 14px;
+    width: 75px;
+    flex: 0 0 75px; }
+  #insert-category-window .input-name input, #insert-category-window .input-name select, #insert-category-window .input-parent input, #insert-category-window .input-parent select,
+  #update-category-window .input-name input,
+  #update-category-window .input-name select,
+  #update-category-window .input-parent input,
+  #update-category-window .input-parent select {
+    flex: 1 1 auto; }
 
 /*# sourceMappingURL=manager.css.map */

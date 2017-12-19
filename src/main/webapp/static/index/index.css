@@ -18,25 +18,52 @@ header {
   .page .left {
     flex: 1 1 auto; }
   .page .right {
-    flex: 0 0 300px;
+    flex: 0 0 275px;
     padding-left: 10px; }
     .page .right #categories {
+      padding: 15px 0;
       position: fixed;
       top: 50px;
       width: 290px;
       margin-top: 15px;
       background-color: white;
-      border: 1px solid #e7eaf1;
       border-radius: 2px;
-      box-shadow: 0 1px 3px rgba(0, 37, 55, 0.05);
-      height: 400px;
-      padding: 10px 0; }
-      .page .right #categories > div {
-        padding: 0 25px;
-        height: 40px;
-        line-height: 40px;
+      box-shadow: 0 1px 3px rgba(0, 37, 55, 0.05); }
+      .page .right #categories .top-categories {
         color: #8590a6; }
-      .page .right #categories > div:hover {
+        .page .right #categories .top-categories .content {
+          padding: 0 25px;
+          height: 50px;
+          line-height: 50px;
+          position: relative;
+          overflow: hidden; }
+        .page .right #categories .top-categories .content:after {
+          content: "";
+          display: block;
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          top: 0;
+          left: 0;
+          pointer-events: none;
+          background: radial-gradient(circle, #888 10%, transparent 10.01%) no-repeat 50%;
+          transform: scale(10, 10);
+          opacity: 0;
+          transition: transform .5s, opacity .5s; }
+        .page .right #categories .top-categories .content:active:after {
+          transform: scale(0, 0);
+          opacity: .3;
+          transition: 0s; }
+        .page .right #categories .top-categories .sub-categories {
+          padding: 0 50px;
+          color: white;
+          background-color: #666666;
+          height: 45px;
+          line-height: 45px;
+          border-left: 7px solid #666666; }
+        .page .right #categories .top-categories .sub-categories:hover {
+          border-left: 7px solid #00b0e8; }
+      .page .right #categories .top-categories:hover {
         cursor: pointer;
         background-color: #f6f6fa; }
 

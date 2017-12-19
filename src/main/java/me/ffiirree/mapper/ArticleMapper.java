@@ -38,7 +38,7 @@ public interface ArticleMapper {
             @Result(property = "user", column = "uid",
                     one = @One(select = "me.ffiirree.mapper.UserMapper.getUserById")),
             @Result(property = "category", column = "cid",
-                    one = @One(select = "me.ffiirree.mapper.CategoryMapper.getCategoryById")),
+                    one = @One(select = "me.ffiirree.mapper.CategoryMapper.select")),
             @Result(property = "topics", javaType = List.class, column = "id",
                     many = @Many(select = "me.ffiirree.mapper.ATMapper.all"))
     })
@@ -54,7 +54,7 @@ public interface ArticleMapper {
             @Result(property = "user", column = "uid",
                     one = @One(select = "me.ffiirree.mapper.UserMapper.getUserById")),
             @Result(property = "category", column = "cid",
-                    one = @One(select = "me.ffiirree.mapper.CategoryMapper.getCategoryById")),
+                    one = @One(select = "me.ffiirree.mapper.CategoryMapper.select")),
             @Result(property = "topics", javaType = List.class, column = "id",
                     many = @Many(select = "me.ffiirree.mapper.ATMapper.all"))
     })
@@ -71,7 +71,7 @@ public interface ArticleMapper {
             @Result(property = "user", column = "uid",
                     one = @One(select = "me.ffiirree.mapper.UserMapper.getUserById")),
             @Result(property = "category", column = "cid",
-                    one = @One(select = "me.ffiirree.mapper.CategoryMapper.getCategoryById")),
+                    one = @One(select = "me.ffiirree.mapper.CategoryMapper.select")),
             @Result(property = "topics", javaType = List.class, column = "id",
                     many = @Many(select = "me.ffiirree.mapper.ATMapper.all"))
     })

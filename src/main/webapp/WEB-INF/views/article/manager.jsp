@@ -41,14 +41,27 @@
             </div>
         </div>
 
+        <%--分类列表--%>
         <div id="categories-list" style="display: none;" class="section">
             <div x-for="c:categories" class="category">
                 <div x-attr:class="c.id" class="category-info">
-                    <span class="title">{{ c.name }}</span><span class="attach"> ({{ c.count }})</span>
+                    <div class="name">
+                        <span class="title">{{ c.name }}</span><span class="attach"> ({{ c.count }})</span>
+                    </div>
+                    <div class="parent">
+                        <div>{{ c.parent ? c.parent.name :'-' }}</div>
+                    </div>
                 </div>
                 <ul class="operation ul-left">
                     <li class="modify" x-on:click="modify(c)">修改</li>
                     <li class="delete" x-on:click="delete(c)">删除</li>
+                </ul>
+            </div>
+            <div class="category">
+                <div class="category-info">
+                </div>
+                <ul class="operation ul-left">
+                    <li id="insert-category">添加</li>
                 </ul>
             </div>
         </div>
@@ -69,14 +82,57 @@
 </div>
 
 <div id="delete-window" class="delete-window-background" style="display: none">
-    <div class="delete-window">
-        <div class="title">删除文章</div>
-        <div class="content">确认删除文章 <span id="article-title"></span>?</div>
+    <div class="window">
+        <div class="title">删除<span id="delete-type"></span></div>
+        <div class="content">确认删除 <span id="delete-name"></span>?</div>
         <div class="operation">
-            <div id="delete-do">删除</div>
-            <div id="delete-cancel">取消</div>
+            <div class="delete" id="delete-do">删除</div>
+            <div class="cancel" id="delete-cancel">取消</div>
         </div>
     </div>
 </div>
+
+
+<div id="insert-category-window" class="insert-category-background" style="display: none">
+    <div class="window">
+        <div class="title">添加分类</div>
+        <div  class="input-name">
+            <div>NAME</div><input type="text" id="input-category-name">
+        </div>
+        <div  class="input-parent">
+            <div>PARENT</div>
+            <select id="categories-select">
+                <option  value="0">NONE</option>
+                <option x-for="c:categories" x-attr:value="c.id">{{ c.name }}</option>
+            </select>
+        </div>
+        <div class="operation">
+            <div class="insert" id="insert-category-do">添加</div>
+            <div class="cancel" id="insert-category-cancel">取消</div>
+        </div>
+    </div>
+</div>
+
+<div id="update-category-window" class="insert-category-background" style="display: none">
+    <div class="window">
+        <div class="title">修改分类</div>
+        <div  class="input-name">
+            <div>NAME</div><input type="text" id="update-category-name">
+        </div>
+        <div  class="input-parent">
+            <div>PARENT</div>
+            <select id="update-categories-select">
+                <option  value="0">NONE</option>
+                <option x-for="c:categories" x-attr:value="c.id">{{ c.name }}</option>
+            </select>
+        </div>
+        <div class="operation">
+            <div class="update" id="update-category-do">修改</div>
+            <div class="cancel" id="update-category-cancel">取消</div>
+        </div>
+    </div>
+</div>
+
+
 </body>
 </html>

@@ -50,7 +50,7 @@ let EDITOR = (function () {
     //
     function __setCategories__() {
 
-        $.post('/article/categories', null, function (data) {
+        $.post('/category/all', null, function (data) {
             if(data.status === 'success') {
                 new Minx({
                     $:"#categories",

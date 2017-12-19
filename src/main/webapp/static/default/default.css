@@ -216,7 +216,7 @@ body {
 
 /*///////////////////////// -- 自定义滚动条 -- ///////////////////////*/
 ::-webkit-scrollbar {
-  width: 12px; }
+  width: 10px; }
 
 /* 滚动槽 */
 ::-webkit-scrollbar-track {

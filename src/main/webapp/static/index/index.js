@@ -18,6 +18,7 @@ FIRE.index = (function () {
         currentPage:0
     };
     let _articles = {}, _pagination = {};
+    let _show_sub_cid = 0;
 
     return {
         render: function () {
@@ -40,7 +41,7 @@ FIRE.index = (function () {
         },
 
         categories:function () {
-            $.post('/article/categories', null, function (data) {
+            $.post('/category/top_all', null, function (data) {
                 if(data.status === "success"){
 
                     new Minx({
@@ -50,6 +51,20 @@ FIRE.index = (function () {
                         },
                         methods: {
                             category: function (data) {
+                                Router.hash.value = { scope: data[0], page: Router.hash.get('page') };
+
+                                if($(this.parentNode).find(".sub-categories")[0]) $(".sub-categories").hide();
+                                if(_show_sub_cid === data[0]) {
+                                    $(this.parentNode).find(".sub-categories").hide();
+                                    _show_sub_cid = 0;
+                                }
+                                else {
+                                    $(this.parentNode).find(".sub-categories").show();
+                                    _show_sub_cid = data[0];
+                                }
+                            },
+
+                            sub_category: function (data) {
                                 Router.hash.value = { scope: data[0], page: Router.hash.get('page') };
                             }
                         }
