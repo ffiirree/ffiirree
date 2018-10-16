@@ -15,6 +15,6 @@ public class HomeController {
      */
     @RequestMapping(method = {GET, POST})
     public String home() {
-        return "index";
+        return "home/index";
     }
 }

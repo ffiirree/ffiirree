@@ -65,7 +65,7 @@ public class ArticleController {
      */
     @RequestMapping(value = "/edit", method = GET)
     public String edit() {
-        return "article/editor";
+        return "editor/editor";
     }
 
     /**
@@ -73,7 +73,7 @@ public class ArticleController {
      */
     @RequestMapping(value = "/manager", method = GET)
     public String manager() {
-        return "article/manager";
+        return "manager/manager";
     }
 
 

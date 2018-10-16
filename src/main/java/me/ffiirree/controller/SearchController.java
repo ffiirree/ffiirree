@@ -24,7 +24,7 @@ public class SearchController {
 
     @RequestMapping(method = {GET, POST})
     public String page(){
-        return "search";
+        return "search/search";
     }
 
     @RequestMapping(value = "/article", method = POST)
@@ -49,15 +49,4 @@ public class SearchController {
 
         return topicService.search(word, page, size);
     }
-
-//    public HashMap<String, Object> topic(@RequestParam(value = "page", defaultValue = "0")int page,
-//                                         @RequestParam(value = "size", defaultValue = "20")int size){
-//
-//    }
-//
-//
-//    public HashMap<String, Object> category(@RequestParam(value = "page", defaultValue = "0")int page,
-//                                            @RequestParam(value = "size", defaultValue = "20")int size){
-//
-//    }
 }

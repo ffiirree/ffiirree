@@ -11,6 +11,26 @@ create table users(
 select * from users;
 insert into users values(default, 'ffiirree', 960215, default, default, 'ice_qi@163.com', default);
 
+
+##################################################################################################
+# 文章分类
+create table categories(
+	id bigint auto_increment primary key,
+    position bigint unique not null,
+    parent_id bigint not null default 0,
+    name text collate utf8_general_ci not null,
+    submitTime timestamp default current_timestamp
+);
+select * from categories;
+
+insert into categories values(default,  1, 0, '前端', default);
+insert into categories(position, name) values(2,'C/C++');
+insert into categories(name) values('Javascript');
+insert into categories(name) values('CV');
+insert into categories(name) values('OpenCV');
+insert into categories(name) values('Ubuntu');
+insert into categories(name) values('CUDA');
+insert into categories(name) values('Machine Learning');
 ##################################################################################################
 # article
 #查询测试
@@ -52,27 +72,6 @@ insert into article_read_number values(3, '127.0.0.1', default);
 
 select * from article_read_number where aid=3 and ip='0:0:0:0:0:0:0:1' order by timestamp desc limit 1;
 
-##################################################################################################
-# 文章分类
-create table categories(
-	id bigint auto_increment primary key,
-    position bigint unique not null,
-    parent_id bigint not null default 0,
-    name text collate utf8_general_ci not null,
-    submitTime timestamp default current_timestamp,
-    
-    foreign key(parent_id) references categories(id) on delete cascade
-);
-select * from categories;
-
-insert into categories(name) values('前端');
-insert into categories(name) values('C/C++');
-insert into categories(name) values('Javascript');
-insert into categories(name) values('CV');
-insert into categories(name) values('OpenCV');
-insert into categories(name) values('Ubuntu');
-insert into categories(name) values('CUDA');
-insert into categories(name) values('Machine Learning');
 
 ##################################################################################################
 # 文章的Topic

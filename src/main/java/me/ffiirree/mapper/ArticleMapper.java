@@ -90,6 +90,10 @@ public interface ArticleMapper {
             @Result(property = "id", column = "id"),
             @Result(property = "reviewNumber", column = "id",
                     one = @One(select = "me.ffiirree.mapper.ArticleReviewMapper.count")),
+            @Result(property = "user", column = "uid",
+                    one = @One(select = "me.ffiirree.mapper.UserMapper.getUserById")),
+            @Result(property = "category", column = "cid",
+                    one = @One(select = "me.ffiirree.mapper.CategoryMapper.select")),
             @Result(property = "topics", javaType = List.class, column = "id",
                     many = @Many(select = "me.ffiirree.mapper.ATMapper.all"))
     })

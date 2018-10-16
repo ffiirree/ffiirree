@@ -1,0 +1,43 @@
+@charset "utf-8";
+
+body {
+    background-color: #f7f8fa;
+}
+
+.signup {
+    padding: 50px 0;
+    width: 400px;
+    margin: 10% auto auto;
+    box-shadow: 0 0 15px 5px #aaaaaa;
+    background-color: white;
+
+    .title {
+        margin: 25px;
+        height: 25px;
+        line-height: 25px;
+        font-size: 20px;
+        text-align: center;
+    }
+
+    #password,
+    #username,
+    #email {
+        width: 350px;
+    }
+
+    #submit {
+        width: 350px;
+        margin: 0 25px;
+        height: 40px;
+    }
+
+    .notices {
+        font-size: 13px;
+        text-align: center;
+        margin: 10px 0;
+    }
+}
+
+
+
+

@@ -25,7 +25,7 @@ public class UserController {
      */
     @RequestMapping(value = "/login", method = GET)
     public String login() {
-        return "login";
+        return "login/login";
     }
 
     /**
@@ -39,7 +39,7 @@ public class UserController {
     @RequestMapping(value = "/logout", method = GET)
     public String logout(HttpSession session){
         session.removeAttribute("current_user");
-        return "redirect:/user/login";
+        return "redirect:/login/login";
     }
 
     /**
